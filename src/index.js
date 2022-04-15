@@ -11,16 +11,27 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from '@redux-saga/core';
 import reportWebVitals from './reportWebVitals';
+import rootReducer, { rootSaga } from './modules';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
