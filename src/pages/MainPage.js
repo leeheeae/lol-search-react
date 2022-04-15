@@ -1,11 +1,11 @@
 import React from 'react';
-import Search from '../components/search/Search';
+import SearchContainer from '../containers/summoner/SearchContainer';
 
 const MainPage = () => {
   return (
     <div>
       <h1>메인</h1>
-      <Search />
+      <SearchContainer />
     </div>
   );
 };
