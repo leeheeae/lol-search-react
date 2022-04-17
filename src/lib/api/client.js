@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const client = axios.create({
-  baseURL: 'https://kr.api.riotgames.com/lol/summoner/v4',
-});
+const client = axios.create();
 
 export default client;
