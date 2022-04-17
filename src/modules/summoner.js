@@ -42,9 +42,7 @@ export function* summonerSaga() {
 const initialState = {
   summonerInput: '',
   summoner: null,
-  summonerIcon: {
-    profileIcon: '',
-  },
+  summonerIcon: '',
   error: null,
 };
 
@@ -62,12 +60,9 @@ const summoner = handleActions(
       ...state,
       error,
     }),
-    [SUMMONER_PROFILE_ICON_SUCCESS]: (state, { payload: profileIcon }) => ({
+    [SUMMONER_PROFILE_ICON_SUCCESS]: (state, { payload: summonerIcon }) => ({
       ...state,
-      summonerIcon: {
-        ...state.summonerIcon,
-        profileIcon,
-      },
+      summonerIcon,
     }),
     [SUMMONER_PROFILE_ICON_FAILURE]: (state, { payload: error }) => ({
       ...state,
