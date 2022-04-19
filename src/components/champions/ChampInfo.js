@@ -45,6 +45,7 @@ const ChampInfo = () => {
           <InfoBox>
             <h2 className="champ-name"> {champ.name}</h2>
             <SkillList>
+              <Skill passive={champ.passive} />
               <Skill skill={champ.spells[0]} />
               <Skill skill={champ.spells[1]} />
               <Skill skill={champ.spells[2]} />

@@ -29,8 +29,9 @@ const SkillBox = styled.div`
   }
   .skill-text {
     display: none;
+    border-radius: 4px;
     width: 250px;
-    padding: 1.1rem;
+    padding: 1rem 1.2rem;
     position: absolute;
     top: 60px;
     z-index: 2;
@@ -55,22 +56,39 @@ const SkillBox = styled.div`
   }
 `;
 
-const Skill = ({ skill }) => {
+const Skill = ({ skill, passive }) => {
   return (
     <SkillBox>
-      <img
-        src={`
+      {skill && (
+        <>
+          <img
+            src={`
               https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${skill.image.full}`}
-        alt="img"
-      />
-      <div className="skill-key">{skill.id.substr(-1)}</div>
-      <div className="skill-text">
-        <h4 className="spell-name">{skill.name}</h4>
-        <div>{skill.cooldown}</div>
-        <div>소모: {skill.costType}</div>
-        <div>범위: {skill.rangeBurn}</div>
-        <div className="spell-description">{skill.description}</div>
-      </div>
+            alt="img"
+          />
+          <div className="skill-key">{skill.id.substr(-1)}</div>
+          <div className="skill-text">
+            <h4 className="spell-name">{skill.name}</h4>
+            <div>{skill.cooldown}</div>
+            <div>소모: {skill.costType}</div>
+            <div>범위: {skill.rangeBurn}</div>
+            <div className="spell-description">{skill.description}</div>
+          </div>
+        </>
+      )}
+      {passive && (
+        <>
+          <img
+            src={`
+              http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/${passive.image.full}`}
+            alt="img"
+          />
+          <div className="skill-text">
+            <h4 className="spell-name">{passive.name}</h4>
+            <div className="spell-description">{passive.description}</div>
+          </div>
+        </>
+      )}
     </SkillBox>
   );
 };
