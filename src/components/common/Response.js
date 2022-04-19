@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const ResponseBox = styled.div`
   max-width: 1024px;
-  min-height: 100vh;
   margin: auto;
 `;
 

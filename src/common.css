@@ -4,11 +4,15 @@
 * {
     margin: 0; padding: 0;
     box-sizing: border-box; 
-    font-family: 'Pretendard';
 }
 
 html,body {
     width: 100%;
-    height: 100%;
+    height: 100%;font-family: 'Pretendard';
+    color: #383838;
+}
 
+a {
+    text-decoration: none;
+    color: #383838;
 }
