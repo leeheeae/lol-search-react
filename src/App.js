@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Background from './components/common/Background';
 import MainPage from './pages/MainPage';
 import NotFountPage from './pages/NotFountPage';
 
@@ -10,12 +11,14 @@ const App = () => {
       <Helmet>
         <title>LOL Search</title>
       </Helmet>
-      <Routes>
-        <Route path='/' element={<MainPage />} />
+      <Background>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
 
-        {/* NotFound */}
-        <Route path='*' element={<NotFountPage />} />
-      </Routes>
+          {/* NotFound */}
+          <Route path="*" element={<NotFountPage />} />
+        </Routes>
+      </Background>
     </>
   );
 };

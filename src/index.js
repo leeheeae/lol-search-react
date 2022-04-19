@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './reset.css';
+import './common.css';
 import App from './App';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -18,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
 sagaMiddleware.run(rootSaga);
@@ -32,7 +33,7 @@ root.render(
         </HelmetProvider>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
