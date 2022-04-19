@@ -10,7 +10,7 @@ const Search = ({ onChange, onSubmit, summoner }) => {
   return (
     <SearchBlock>
       <form onSubmit={onSubmit}>
-        <Input placeholder='소환사명 검색하기' onChange={onChange} />
+        <Input placeholder="소환사명 검색하기" onChange={onChange} />
         <SearchButton>검색</SearchButton>
         <SearchList summoner={summoner} />
       </form>
