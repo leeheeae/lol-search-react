@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Response from '../common/Response';
 
 const SummonerInfoBox = styled.div`
+  padding: 40px 20px;
   display: flex;
 `;
 
@@ -10,7 +11,6 @@ const IconBox = styled.div`
   width: 120px;
   height: 120px;
   position: relative;
-  margin-right: 20px;
 
   img {
     display: block;
@@ -20,25 +20,24 @@ const IconBox = styled.div`
   }
   p {
     position: absolute;
-    width: 44px;
-    height: 24px;
-    margin-left: -22px;
     left: 50%;
-    bottom: -24px;
+    bottom: 0;
+    transform: translate(-50%, 10px);
     background-color: #fff;
-    text-align: center;
+    border: 3px solid #8d8daa;
     border-radius: 20px;
-    border: 3px solid #333;
+    padding: 4px 10px;
     font-size: 14px;
     font-weight: 600;
-    line-height: 24px;
+    color: #8d8daa;
   }
 `;
 
 const InfoBox = styled.div`
+  padding: 1.2rem;
   .summoner_name {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
   }
 `;
 

@@ -22,7 +22,7 @@ const SearchButton = styled.button`
   right: 8px;
 `;
 
-const Search = ({ big, onChange, onSubmit, summoner }) => {
+const Search = ({ big, onChange, onSubmit }) => {
   return (
     <SearchBlock>
       <form onSubmit={onSubmit}>
@@ -30,7 +30,6 @@ const Search = ({ big, onChange, onSubmit, summoner }) => {
         <SearchButton>
           <BiSearch size="24" color="#F56D91" />
         </SearchButton>
-        <SearchList summoner={summoner} />
       </form>
     </SearchBlock>
   );
