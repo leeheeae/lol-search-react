@@ -1,23 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../../components/search/Search';
 // import SearchList from '../../components/search/SearchList';
-import {
-  changeField,
-  summonerSearch,
-  summonerProfileIcon,
-} from '../../modules/summoner';
+import { changeField, summonerSearch } from '../../modules/summoner';
 
 const SearchContainer = () => {
   const dispatch = useDispatch();
 
-  const { summoner, summonerInput, summonerIcon } = useSelector(
-    ({ summoner }) => ({
-      summoner: summoner.summoner,
-      summonerInput: summoner.summonerInput,
-      summonerIcon: summoner.summonerIcon,
-    }),
-  );
+  const { summoner, summonerInput } = useSelector(({ summoner }) => ({
+    summoner: summoner.summoner,
+    summonerInput: summoner.summonerInput,
+  }));
 
   const onChange = (e) => {
     const { value } = e.target;
@@ -29,21 +22,7 @@ const SearchContainer = () => {
     dispatch(summonerSearch(summonerInput));
   };
 
-  useEffect(() => {
-    if (summoner) {
-      console.log(summoner);
-      dispatch(summonerProfileIcon(summoner.profileIconId));
-    }
-  }, [summoner]);
-
-  return (
-    <Search
-      onChange={onChange}
-      onSubmit={onSubmit}
-      summoner={summoner}
-      summonerIcon={summonerIcon}
-    />
-  );
+  return <Search onChange={onChange} onSubmit={onSubmit} summoner={summoner} />;
 };
 
 export default SearchContainer;

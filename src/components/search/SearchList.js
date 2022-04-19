@@ -10,7 +10,7 @@ const SearchList = ({ summoner, summonerIcon }) => {
           <div>puuid: {summoner.puuid}</div>
           <div>아이디: {summoner.name}</div>
           <div>
-            아이콘:{' '}
+            아이콘:
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${summoner.profileIconId}.png`}
               alt="icon"
