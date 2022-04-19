@@ -20,6 +20,7 @@ const SearchContainer = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(summonerSearch(summonerInput));
+    e.target.reset();
   };
 
   return <Search onChange={onChange} onSubmit={onSubmit} summoner={summoner} />;

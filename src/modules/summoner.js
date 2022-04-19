@@ -35,6 +35,10 @@ const summoner = handleActions(
       ...state,
       summonerInput: value,
     }),
+    [SUMMONER_SEARCH]: (state) => ({
+      ...state,
+      summonerInput: '',
+    }),
     [SUMMONER_SEARCH_SUCCESS]: (state, { payload: summoner }) => ({
       ...state,
       summoner,
