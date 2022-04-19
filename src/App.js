@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Background from './components/common/Background';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
+import ChampPage from './pages/ChampPage';
 import NotFountPage from './pages/NotFountPage';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/champ" element={<ChampPage />} />
 
           {/* NotFound */}
           <Route path="*" element={<NotFountPage />} />
