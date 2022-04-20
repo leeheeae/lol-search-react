@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SpectatorItem from './SpectatorItem';
 
 const SpectatorBlock = styled.div`
   width: 100%;
@@ -15,15 +16,32 @@ const SpectatorList = styled.div`
   }
 `;
 
-const Spectator = ({ children }) => {
+const Spectator = ({ error, summonerSpectator }) => {
   return (
-    <SpectatorBlock>
-      <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 14분 57초</SpectatorInfo>
-      <SpectatorList>
-        <ul>{children}</ul>
-        <ul>{children}</ul>
-      </SpectatorList>
-    </SpectatorBlock>
+    <>
+      {error && <div>{error}</div>}
+      {summonerSpectator.length === 0 && (
+        <SpectatorBlock>
+          <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 14분 57초</SpectatorInfo>
+          <SpectatorList>
+            <ul>
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+            </ul>
+            <ul>
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+              <SpectatorItem />
+            </ul>
+          </SpectatorList>
+        </SpectatorBlock>
+      )}
+    </>
   );
 };
 

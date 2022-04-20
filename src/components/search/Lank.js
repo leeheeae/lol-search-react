@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const LankBlock = styled.div`
   padding: 20px;
-  width: 300px;
+  width: 340px;
   border: 1px solid #ccc;
   display: flex;
   align-items: center;

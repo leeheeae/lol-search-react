@@ -7,6 +7,7 @@ import { takeLatest } from '@redux-saga/core/effects';
 
 const CHANGE_FIELD = 'summoner/CHANGE_FIELD';
 const SUMMONER_REAGUE_CLEAR = 'summoner/SUMMONER_REAGUE_CLEAR';
+const ERROR_INITIALIZE = 'summoner/ERROR_INITIALIZE';
 
 const [SUMMONER_SEARCH, SUMMONER_SEARCH_SUCCESS, SUMMONER_SEARCH_FAILURE] =
   createRequestActionTypes('summoner/SUMMONER_SEARCH');
@@ -72,6 +73,11 @@ const summoner = handleActions(
     [SUMMONER_SEARCH]: (state) => ({
       ...state,
       summonerInput: '',
+      error: {
+        summonerSearchError: null,
+        summonerReagueError: null,
+        summonerSpectatorError: null,
+      },
     }),
     [SUMMONER_SEARCH_SUCCESS]: (state, { payload: summoner }) => ({
       ...state,
