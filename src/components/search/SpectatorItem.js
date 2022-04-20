@@ -6,14 +6,29 @@ const SpectatorItemBlock = styled.li`
   padding: 20px;
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+
+  & + & {
+    border-top: 1px solid #ccc;
+  }
 `;
+
+const ChampImg = styled.img`
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+`;
+
 const TierIcon = styled.div`
   display: inline-block;
   padding: 6px 8px;
   background-color: pink;
   font-size: 13px;
 `;
+
 const InfoBox = styled.div`
   h2 {
     font-size: 15px;
@@ -41,7 +56,6 @@ const SpectatorItem = ({ summonerInfo }) => {
     const result = Object.keys(data)
       .map((key, i) => data[key])
       .filter((itemKey) => itemKey.key === spell.toString());
-    console.log(result);
     return result;
   };
 
@@ -49,13 +63,19 @@ const SpectatorItem = ({ summonerInfo }) => {
     <>
       {summonerInfo && (
         <SpectatorItemBlock>
+          <ChampImg src="" alt="champ-icon" />
           <InfoBox>
-            {summonerInfo.spell1Id}
             <h2>{summonerInfo.summonerName}</h2>
             <div className="spell-box">
               <img
                 src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
                   spellSearchBox(data.data, summonerInfo.spell1Id)[0].id
+                }.png`}
+                alt="icon"
+              />
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                  spellSearchBox(data.data, summonerInfo.spell2Id)[0].id
                 }.png`}
                 alt="icon"
               />
