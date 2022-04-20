@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Response from '../common/Response';
 
 const LankBlock = styled.div`
   padding: 20px;
@@ -49,36 +48,34 @@ const Lank = ({ reague }) => {
 
   return (
     <>
-      <Response>
-        {reague ? (
-          <LankBlock>
-            {reague.tier && (
-              <ImgBox>
-                <img
-                  src={`images/ranked-emblems/Emblem_${capitalizeString(
-                    reague.tier,
-                  )}.png`}
-                  alt="dd"
-                />
-              </ImgBox>
-            )}
-            <InfoBox>
-              <h3 className="queue-type">{lankNameList[reague.queueType]}</h3>
-              <div className="tier">
-                {reague.tier} {reague.rank} -
-                <span className="league-points"> {reague.leaguePoints}</span>
-              </div>
-              <div className="winning-rate">
-                <span>{reague.wins + reague.losses}전 </span>
-                <span>{reague.wins}승 </span>
-                <span>{reague.losses}패</span>
-              </div>
-            </InfoBox>
-          </LankBlock>
-        ) : (
-          <></>
-        )}
-      </Response>
+      {reague ? (
+        <LankBlock>
+          {reague.tier && (
+            <ImgBox>
+              <img
+                src={`images/ranked-emblems/Emblem_${capitalizeString(
+                  reague.tier,
+                )}.png`}
+                alt="dd"
+              />
+            </ImgBox>
+          )}
+          <InfoBox>
+            <h3 className="queue-type">{lankNameList[reague.queueType]}</h3>
+            <div className="tier">
+              {reague.tier} {reague.rank} -
+              <span className="league-points"> {reague.leaguePoints}</span>
+            </div>
+            <div className="winning-rate">
+              <span>{reague.wins + reague.losses}전 </span>
+              <span>{reague.wins}승 </span>
+              <span>{reague.losses}패</span>
+            </div>
+          </InfoBox>
+        </LankBlock>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

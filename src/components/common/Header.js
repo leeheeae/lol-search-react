@@ -28,7 +28,7 @@ const Header = () => {
     <HeaderBlock>
       <div className="inner-header">
         <Link to="/">
-          <h1 className="logo">롤검색</h1>
+          <h1 className="logo">희애</h1>
         </Link>
         <SearchContainer />
       </div>

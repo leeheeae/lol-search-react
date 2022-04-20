@@ -48,15 +48,19 @@ const WatchingBtn = styled.button`
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  padding: 12px 20px;
+  padding: 12px 18px;
   border-radius: 3px;
-  background-color: #8d8daa;
+  background: #797991;
   color: #fff;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
 
+  &:hover {
+    background: #59596b;
+  }
   svg {
-    margin-left: 10px;
+    margin-left: 8px;
   }
 `;
 

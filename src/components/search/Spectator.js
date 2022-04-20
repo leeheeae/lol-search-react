@@ -26,7 +26,7 @@ const Spectator = ({ error, summonerSpectator }) => {
         {error && <div>{error}</div>}
         {summonerSpectator.length !== 0 && (
           <SpectatorBlock>
-            <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 14분 57초</SpectatorInfo>
+            <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 24분 57초</SpectatorInfo>
             <SpectatorList>
               <ul>
                 {summonerSpectator.participants &&
