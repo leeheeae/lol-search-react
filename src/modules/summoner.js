@@ -5,7 +5,8 @@ import createRequestSaga, {
 import * as summonerAPI from '../lib/api/summoner';
 import { takeLatest } from '@redux-saga/core/effects';
 
-const CHANGE_FIELD = 'auth/CHANGE_FIELD';
+const CHANGE_FIELD = 'summoner/CHANGE_FIELD';
+const SUMMONER_REAGUE_CLEAR = 'summoner/SUMMONER_REAGUE_CLEAR';
 
 const [SUMMONER_SEARCH, SUMMONER_SEARCH_SUCCESS, SUMMONER_SEARCH_FAILURE] =
   createRequestActionTypes('summoner/SUMMONER_SEARCH');
@@ -20,6 +21,7 @@ export const summonerReague = createAction(
   SUMMONER_REAGUE,
   (summonerId) => summonerId,
 );
+export const summonerReagueClear = createAction(SUMMONER_REAGUE_CLEAR);
 
 const summonerSearchSaga = createRequestSaga(
   SUMMONER_SEARCH,
@@ -67,6 +69,10 @@ const summoner = handleActions(
     [SUMMONER_REAGUE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
+    }),
+    [SUMMONER_REAGUE_CLEAR]: (state) => ({
+      ...state,
+      summonerReague: [],
     }),
   },
   initialState,

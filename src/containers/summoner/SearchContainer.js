@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../../components/search/Search';
-// import SearchList from '../../components/search/SearchList';
 import {
   changeField,
   summonerSearch,
   summonerReague,
+  summonerReagueClear,
 } from '../../modules/summoner';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,6 +34,10 @@ const SearchContainer = () => {
   useEffect(() => {
     if (!summoner) return;
     dispatch(summonerReague(summoner.id));
+
+    return () => {
+      dispatch(summonerReagueClear());
+    };
   }, [summoner]);
 
   return <Search onChange={onChange} onSubmit={onSubmit} />;
