@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IoMdSwitch } from 'react-icons/io';
 import Response from '../common/Response';
 
 const SummonerInfoBox = styled.div`
   padding: 40px 20px;
   display: flex;
+  align-items: flex-start;
 `;
 
 const IconBox = styled.div`
@@ -41,7 +43,24 @@ const InfoBox = styled.div`
   }
 `;
 
-const SearchList = ({ summoner }) => {
+const WatchingBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 3px;
+  background-color: #8d8daa;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+
+  svg {
+    margin-left: 10px;
+  }
+`;
+
+const SearchList = ({ summoner, onClickSpectator }) => {
   return (
     <>
       <Response>
@@ -56,6 +75,9 @@ const SearchList = ({ summoner }) => {
             </IconBox>
             <InfoBox>
               <h3 className="summoner_name">{summoner.name}</h3>
+              <WatchingBtn onClick={() => onClickSpectator()}>
+                인게임정보 확인하기 <IoMdSwitch size="24px" />
+              </WatchingBtn>
             </InfoBox>
           </SummonerInfoBox>
         )}

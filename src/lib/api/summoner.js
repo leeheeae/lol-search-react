@@ -18,3 +18,13 @@ export const summonerLeague = (encryptedSummonerId) =>
   client.get(
     `${config.url}/league/v4/entries/by-summoner/${encryptedSummonerId}?api_key=${process.env.REACT_APP_RIOT_KEY}`,
   );
+
+/*
+검색한 소환사 진행중인 게임 보기 
+GET encryptedSummonerId
+*/
+
+export const summonerSpectatorSearch = (encryptedSummonerId) =>
+  client.get(
+    `${config.url}/spectator/v4/active-games/by-summoner/${encryptedSummonerId}?api_key=${process.env.REACT_APP_RIOT_KEY}`,
+  );

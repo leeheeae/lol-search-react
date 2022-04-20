@@ -50,14 +50,16 @@ const Lank = ({ reague }) => {
     <>
       {reague ? (
         <LankBlock>
-          <ImgBox>
-            <img
-              src={`images/ranked-emblems/Emblem_${capitalizeString(
-                reague.tier,
-              )}.png`}
-              alt="dd"
-            />
-          </ImgBox>
+          {reague.tier && (
+            <ImgBox>
+              <img
+                src={`images/ranked-emblems/Emblem_${capitalizeString(
+                  reague.tier,
+                )}.png`}
+                alt="dd"
+              />
+            </ImgBox>
+          )}
           <InfoBox>
             <h3 className="queue-type">{lankNameList[reague.queueType]}</h3>
             <div className="tier">
