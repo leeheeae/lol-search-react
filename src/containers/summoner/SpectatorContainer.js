@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Spectator from '../../components/search/Spectator';
-import SpectatorItem from '../../components/search/SpectatorItem';
 
 const SpectatorContainer = () => {
   const [error, setError] = useState(null);
@@ -14,7 +13,6 @@ const SpectatorContainer = () => {
 
   useEffect(() => {
     if (summonerSpectatorError) {
-      console.log('게임중이 아닙니다.');
       setError('게임중이 아닙니다.');
     } else {
       setError(null);

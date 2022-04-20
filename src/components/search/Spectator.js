@@ -9,10 +9,10 @@ const SpectatorBlock = styled.div`
 const SpectatorInfo = styled.div``;
 const SpectatorList = styled.div`
   display: flex;
+  border: 2px solid #000;
 
   ul {
     width: 50%;
-    border: 1px solid red;
   }
 `;
 
@@ -20,23 +20,17 @@ const Spectator = ({ error, summonerSpectator }) => {
   return (
     <>
       {error && <div>{error}</div>}
-      {summonerSpectator.length === 0 && (
+      {summonerSpectator.length !== 0 && (
         <SpectatorBlock>
           <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 14분 57초</SpectatorInfo>
           <SpectatorList>
             <ul>
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
-            </ul>
-            <ul>
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
-              <SpectatorItem />
+              {summonerSpectator.participants &&
+                summonerSpectator.participants
+                  .filter((team) => team.teamId === 100)
+                  .map((item, index) => (
+                    <SpectatorItem key={index} summonerInfo={item} />
+                  ))}
             </ul>
           </SpectatorList>
         </SpectatorBlock>

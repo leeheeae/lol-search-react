@@ -7,8 +7,6 @@ import { takeLatest } from '@redux-saga/core/effects';
 
 const CHANGE_FIELD = 'summoner/CHANGE_FIELD';
 const SUMMONER_REAGUE_CLEAR = 'summoner/SUMMONER_REAGUE_CLEAR';
-const ERROR_INITIALIZE = 'summoner/ERROR_INITIALIZE';
-
 const [SUMMONER_SEARCH, SUMMONER_SEARCH_SUCCESS, SUMMONER_SEARCH_FAILURE] =
   createRequestActionTypes('summoner/SUMMONER_SEARCH');
 const [SUMMONER_REAGUE, SUMMONER_REAGUE_SUCCESS, SUMMONER_REAGUE_FAILURE] =
