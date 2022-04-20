@@ -9,23 +9,36 @@ const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 
 const [SUMMONER_SEARCH, SUMMONER_SEARCH_SUCCESS, SUMMONER_SEARCH_FAILURE] =
   createRequestActionTypes('summoner/SUMMONER_SEARCH');
+const [SUMMONER_REAGUE, SUMMONER_REAGUE_SUCCESS, SUMMONER_REAGUE_FAILURE] =
+  createRequestActionTypes('summoner/SUMMONER_REAGUE');
+
 export const changeField = createAction(CHANGE_FIELD, ({ value }) => ({
   value,
 }));
 export const summonerSearch = createAction(SUMMONER_SEARCH, (name) => name);
+export const summonerReague = createAction(
+  SUMMONER_REAGUE,
+  (summonerId) => summonerId,
+);
 
 const summonerSearchSaga = createRequestSaga(
   SUMMONER_SEARCH,
   summonerAPI.summonerByNameSearch,
 );
+const summonerLeagueSaga = createRequestSaga(
+  SUMMONER_REAGUE,
+  summonerAPI.summonerLeague,
+);
 
 export function* summonerSaga() {
   yield takeLatest(SUMMONER_SEARCH, summonerSearchSaga);
+  yield takeLatest(SUMMONER_REAGUE, summonerLeagueSaga);
 }
 
 const initialState = {
   summonerInput: '',
   summoner: null,
+  summonerReague: [],
   error: null,
 };
 
@@ -44,6 +57,14 @@ const summoner = handleActions(
       summoner,
     }),
     [SUMMONER_SEARCH_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      error,
+    }),
+    [SUMMONER_REAGUE_SUCCESS]: (state, { payload: summonerReague }) => ({
+      ...state,
+      summonerReague,
+    }),
+    [SUMMONER_REAGUE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
