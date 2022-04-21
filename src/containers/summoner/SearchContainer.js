@@ -9,7 +9,7 @@ import {
 } from '../../modules/summoner';
 import { useNavigate } from 'react-router-dom';
 
-const SearchContainer = () => {
+const SearchContainer = ({ big }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const SearchContainer = () => {
     };
   }, [summoner]);
 
-  return <Search onChange={onChange} onSubmit={onSubmit} />;
+  return <Search onChange={onChange} onSubmit={onSubmit} big={big} />;
 };
 
 export default SearchContainer;
