@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { champSearch } from '../../modules/champ';
 import Spectator from '../../components/search/Spectator';
 
 const SpectatorContainer = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState(null);
-  const { summonerSpectatorError, summonerSpectator } = useSelector(
-    ({ summoner }) => ({
+  const { summonerSpectatorError, summonerSpectator, champInfo } = useSelector(
+    ({ summoner, champ }) => ({
       summonerSpectatorError: summoner.error.summonerSpectatorError,
       summonerSpectator: summoner.summonerSpectator,
+      champInfo: champ.champInfo,
     }),
   );
 
@@ -19,7 +22,17 @@ const SpectatorContainer = () => {
     }
   }, [summonerSpectatorError]);
 
-  return <Spectator error={error} summonerSpectator={summonerSpectator} />;
+  useEffect(() => {
+    dispatch(champSearch());
+  }, [summonerSpectator]);
+
+  return (
+    <Spectator
+      error={error}
+      summonerSpectator={summonerSpectator}
+      champInfo={champInfo}
+    />
+  );
 };
 
 export default SpectatorContainer;

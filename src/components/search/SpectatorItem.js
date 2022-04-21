@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import data from '../../db/spell.json';
 
 const SpectatorItemBlock = styled.li`
@@ -51,11 +52,11 @@ const InfoBox = styled.div`
   }
 `;
 
-const SpectatorItem = ({ summonerInfo }) => {
-  const spellSearchBox = (data, spell) => {
+const SpectatorItem = ({ index, summonerInfo, champInfo }) => {
+  const infoSearchBox = (data, target) => {
     const result = Object.keys(data)
-      .map((key, i) => data[key])
-      .filter((itemKey) => itemKey.key === spell.toString());
+      .map((key) => data[key])
+      .filter((itemKey) => itemKey.key === target.toString());
     return result;
   };
 
@@ -63,19 +64,25 @@ const SpectatorItem = ({ summonerInfo }) => {
     <>
       {summonerInfo && (
         <SpectatorItemBlock>
-          <ChampImg src="" alt="champ-icon" />
+          <ChampImg
+            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+              champInfo &&
+              infoSearchBox(champInfo, summonerInfo.championId)[0].image.full
+            }`}
+            alt="champ-icon"
+          />
           <InfoBox>
             <h2>{summonerInfo.summonerName}</h2>
             <div className="spell-box">
               <img
                 src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                  spellSearchBox(data.data, summonerInfo.spell1Id)[0].id
+                  infoSearchBox(data.data, summonerInfo.spell1Id)[0].id
                 }.png`}
                 alt="icon"
               />
               <img
                 src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                  spellSearchBox(data.data, summonerInfo.spell2Id)[0].id
+                  infoSearchBox(data.data, summonerInfo.spell2Id)[0].id
                 }.png`}
                 alt="icon"
               />
