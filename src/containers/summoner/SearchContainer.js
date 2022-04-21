@@ -25,8 +25,12 @@ const SearchContainer = ({ big }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(summonerSearch(summonerInput));
-
+    //2글자일 경우 공백
+    if (summonerInput.length === 2) {
+      dispatch(summonerSearch(summonerInput.split('').join(' ')));
+    } else {
+      dispatch(summonerSearch(summonerInput));
+    }
     e.target.reset();
     navigate(`/search`);
   };
