@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { champSearch } from '../../modules/champ';
+import { spellSearch } from '../../modules/spell';
 import Spectator from '../../components/search/Spectator';
 
 const SpectatorContainer = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
-  const { summonerSpectatorError, summonerSpectator, champInfo } = useSelector(
-    ({ summoner, champ }) => ({
+  const { summonerSpectatorError, summonerSpectator, champInfo, spellInfo } =
+    useSelector(({ summoner, champ, spell }) => ({
       summonerSpectatorError: summoner.error.summonerSpectatorError,
       summonerSpectator: summoner.summonerSpectator,
       champInfo: champ.champInfo,
-    }),
-  );
+      spellInfo: spell.spellInfo,
+    }));
 
   useEffect(() => {
     if (summonerSpectatorError) {
@@ -24,6 +25,7 @@ const SpectatorContainer = () => {
 
   useEffect(() => {
     dispatch(champSearch());
+    dispatch(spellSearch());
   }, [summonerSpectator]);
 
   return (
@@ -31,6 +33,7 @@ const SpectatorContainer = () => {
       error={error}
       summonerSpectator={summonerSpectator}
       champInfo={champInfo}
+      spellInfo={spellInfo}
     />
   );
 };

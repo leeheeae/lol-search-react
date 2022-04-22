@@ -47,7 +47,7 @@ const gameMode = {
   ULTBOOK: '궁극기 주문서',
 };
 
-const Spectator = ({ error, summonerSpectator, champInfo }) => {
+const Spectator = ({ error, summonerSpectator, champInfo, spellInfo }) => {
   return (
     <>
       <Response>
@@ -70,6 +70,7 @@ const Spectator = ({ error, summonerSpectator, champInfo }) => {
                         key={index}
                         summonerInfo={item}
                         champInfo={champInfo}
+                        spellInfo={spellInfo}
                       />
                     ))}
               </ul>
@@ -84,6 +85,7 @@ const Spectator = ({ error, summonerSpectator, champInfo }) => {
                         summonerInfo={item}
                         index={index}
                         champInfo={champInfo}
+                        spellInfo={spellInfo}
                       />
                     ))}
               </ul>
