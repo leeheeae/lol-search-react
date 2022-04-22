@@ -29,15 +29,20 @@ const Spectator = ({ error, summonerSpectator, champInfo, spellInfo }) => {
   return (
     <>
       <Response>
-        {error && <div>{error}</div>}
         {summonerSpectator.length !== 0 && (
           <SpectatorBlock>
             {/* <SpectatorInfo>솔로랭크 | 소환사의 협곡 | 24분 57초</SpectatorInfo> */}
-            <SpectatorInfo>
-              {gameModeConfig[summonerSpectator.gameMode]} |{' '}
-              {summonerSpectator.gameLength}
-              {/* https://static.developer.riotgames.com/docs/lol/queues.json */}
-            </SpectatorInfo>
+
+            {error && <div>{error}</div>}
+            {summonerSpectator.gameLength && (
+              <SpectatorInfo>
+                <div>
+                  {gameModeConfig[summonerSpectator.gameMode]} |{' '}
+                  {summonerSpectator.gameLength}
+                </div>
+                {/* https://static.developer.riotgames.com/docs/lol/queues.json */}
+              </SpectatorInfo>
+            )}
             <SpectatorList>
               <ul>
                 {summonerSpectator.participants &&
