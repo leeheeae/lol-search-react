@@ -10,7 +10,7 @@ const LotationsTemplatBlock = styled.div`
 `;
 
 const ListBox = styled.ul`
-  margin-top: 20px;
+  margin-top: 1rem;
   border: 1px solid #ccc;
   background-color: #fff;
   padding: 18px 20px;

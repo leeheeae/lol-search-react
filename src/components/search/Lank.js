@@ -24,13 +24,16 @@ const InfoBox = styled.div`
     font-size: 1.1rem;
   }
   .tier {
-    margin: 10px 0 20px;
+    margin: 14px 0 5px;
     font-size: 16px;
     font-weight: 600;
     color: #f56d91;
   }
+  .league-points {
+    font-size: 14px;
+  }
   .winning-rate {
-    margin-top: 10px;
+    margin-top: 18px;
   }
 `;
 
@@ -63,8 +66,10 @@ const Lank = ({ reague }) => {
           <InfoBox>
             <h3 className="queue-type">{lankNameList[reague.queueType]}</h3>
             <div className="tier">
-              {reague.tier} {reague.rank} -
-              <span className="league-points"> {reague.leaguePoints}</span>
+              {reague.tier} {reague.rank}
+            </div>
+            <div className="league-points">
+              리그 포인트 : {reague.leaguePoints}
             </div>
             <div className="winning-rate">
               <span>{reague.wins + reague.losses}전 </span>

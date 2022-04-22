@@ -7,7 +7,7 @@ const config = {
   },
 };
 
-//챔피언 번호로 검색
+//챔피언 전체 검색
 export const summonerByNameSearch = () =>
   client.get(`${config.url.ddragon}/champion.json`).then(({ data }) => {
     return data;

@@ -6,6 +6,7 @@ const LotationsBlock = styled.li`
   margin: 10px 10px;
   position: relative;
   width: 60px;
+  cursor: pointer;
 
   .name {
     width: 100%;
