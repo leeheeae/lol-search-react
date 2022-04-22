@@ -1,28 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { infoSearchBox } from '../../lib/infoSearch';
+import { tagCheck } from '../../lib/infoSearch';
+import { champTagsConfig } from '../../lib/conifg';
 
 const ChampListBlock = styled.div``;
 
 const ChampList = ({ champInfo }) => {
-  //태그 종류 찾기
-  const tagCheck = (champ) => {
-    const tags = champInfo.map((champ) => champ.tags);
-    const tagsArr = Object.assign(
-      {},
-      tags.map((item) => item[0]),
-    );
-    const tagsArrValues = Object.values(tagsArr);
-    return tagsArrValues.filter((v, i) => tagsArrValues.indexOf(v) === i);
-  };
-
-  console.log(tagCheck(champInfo));
+  // console.log(tagCheck(champInfo));
 
   return (
     <ChampListBlock>
       {champInfo.map((champ) => (
         <div key={champ.key}>
           <div>이름 : {champ.name}</div>
+          <div>
+            태그 :{' '}
+            {champ.tags.map((tag, index) => (
+              <span key={index}>#{champTagsConfig[tag]}</span>
+            ))}
+          </div>
           <div>
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${champ.image.full}`}

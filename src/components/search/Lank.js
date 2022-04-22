@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { lankNameConfig } from '../../lib/conifg';
 
 const LankBlock = styled.div`
   padding: 20px;
@@ -38,11 +39,6 @@ const InfoBox = styled.div`
 `;
 
 const Lank = ({ reague }) => {
-  const lankNameList = {
-    RANKED_SOLO_5x5: '솔로랭크 5X5',
-    RANKED_FLEX_SR: '자유랭크 5X5',
-  };
-
   const capitalizeString = (item) => {
     const lowerItem = item.toLowerCase();
     const result = lowerItem[0].toUpperCase() + lowerItem.slice(1);
@@ -64,7 +60,7 @@ const Lank = ({ reague }) => {
             </ImgBox>
           )}
           <InfoBox>
-            <h3 className="queue-type">{lankNameList[reague.queueType]}</h3>
+            <h3 className="queue-type">{lankNameConfig[reague.queueType]}</h3>
             <div className="tier">
               {reague.tier} {reague.rank}
             </div>
