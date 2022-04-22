@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { infoSearchBox } from '../../lib/infoSearch';
 
 const SpectatorItemBlock = styled.li`
   padding: 20px;
@@ -51,13 +52,6 @@ const InfoBox = styled.div`
 `;
 
 const SpectatorItem = ({ summonerInfo, champInfo, spellInfo }) => {
-  const infoSearchBox = (data, target) => {
-    const result = Object.keys(data)
-      .map((key) => data[key])
-      .filter((itemKey) => itemKey.key === target.toString());
-    return result[0];
-  };
-
   return (
     <>
       {summonerInfo && (

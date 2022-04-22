@@ -20,7 +20,7 @@ const SpectatorList = styled.div`
   background-color: #fff;
 
   ul {
-    width: 45%;
+    width: 49%;
   }
 `;
 
