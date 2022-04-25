@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { infoSearchBox } from '../../lib/infoSearch';
 import { tagCheck } from '../../lib/infoSearch';
 import { champTagsConfig } from '../../lib/conifg';
+import { champListTabs } from '../../lib/conifg';
 
-const ChampListBlock = styled.ul`
+const ChampListBlock = styled.div`
   margin-top: 5rem;
+`;
+
+const ChampListBox = styled.ul`
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
 `;
+
 const ChampItem = styled.li`
   width: 70px;
   margin: 11px;
@@ -33,28 +39,52 @@ const ChampItem = styled.li`
   }
 `;
 
-const ChampList = ({ champInfo }) => {
-  // console.log(tagCheck(champInfo));
+const TagTabs = styled.ul`
+  display: flex;
 
+  li {
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    &.active {
+      color: red;
+    }
+  }
+`;
+
+const ChampList = ({ champInfo, activeIndex, onClickTab }) => {
   return (
     <ChampListBlock>
-      {champInfo.map((champ) => (
-        <ChampItem key={champ.key}>
-          <div>
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${champ.image.full}`}
-              alt=""
-            />
-          </div>
-          <div className="name">{champ.name}</div>
-          {/* <div>
+      <TagTabs>
+        {champListTabs.map((tab, index) => (
+          <li
+            className={activeIndex === index ? 'active' : ''}
+            onClick={() => onClickTab(index)}
+            key={index}
+          >
+            {tab}
+          </li>
+        ))}
+      </TagTabs>{' '}
+      <ChampListBox>
+        {champInfo.map((champ) => (
+          <ChampItem key={champ.key}>
+            <div>
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${champ.image.full}`}
+                alt=""
+              />
+            </div>
+            <div className="name">{champ.name}</div>
+            {/* <div>
             태그 :
             {champ.tags.map((tag, index) => (
               <span key={index}>#{champTagsConfig[tag]}</span>
             ))}
           </div> */}
-        </ChampItem>
-      ))}
+          </ChampItem>
+        ))}
+      </ChampListBox>
     </ChampListBlock>
   );
 };

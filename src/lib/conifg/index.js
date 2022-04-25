@@ -35,3 +35,14 @@ export const gameModeConfig = {
   NEXUSBLITZ: '뒤틀린 숲',
   ULTBOOK: '궁극기 주문서',
 };
+
+//챔피언 리스트 탭
+export const champListTabs = [
+  '전체',
+  '암살자',
+  '전사',
+  '마법사',
+  '원거리딜러',
+  '서포터',
+  '탱커',
+];
