@@ -1,37 +1,40 @@
 # 라이엇 API를 이용한 LOL 소환사 전적 검색 사이트
 
+## 프로젝트
+
 > > Toy 프로젝트
 
-#### 사용 라이브러리
+- **프로젝트명**: LOL Search Proejct
+- **소개**: 리그오브레전드 게임을 이용하는 소환사의 정보를 검색하거나 챔피언에 대한 정보를 확인할 수 있는 사이트
 
-`react`, `react-helmet-async`, `react-redux`, `redux`, `react-router-dom`, `react-actions`, `redux-devtools-extension`, `redux-saga`, `styled-components`, `axios`, `qs`
+### 프로젝트 정보
+
+**사용 기술**
+`react`, `react-helmet-async`,`react-icons`, `react-redux`, `redux`, `react-router-dom`, `react-actions`, `redux-devtools-extension`, `redux-saga`, `styled-components`, `axios`, `qs`
 
 ---
 
-## Pages
-
-1.메인페이지 - 소환사명으로 검색하여 정보 확인하기
-
 ### 메인 페이지
 
-- 컴포넌트 : 검색창, 검색리스트
-- API : `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.REACT_APP_RIOT_KEY}`
-- react-actions
-  - 소환사명 인풋 입력 액션
-    - 입력한 input 값을 summonerInput에 넣음
-  - SUMMONER_SEARCH API 처리
-    - 성공 값을 summoner에 넣음
-    - 실패 값은 error에 넣음
-- Redux-saga를 이용하여 비동기 처리
-- api 처리 완료하면 검색 리스트에 나타나도록 설정
+> > 소환사명으로 소환사 정보 검색, 금주의 로테이션 챔피언 한눈에 확인하기
+
+1. 소환사 정보 검색
+
+- Search박스에 소환사명을 검색하여 소환사정보 확인하기
+- 헤더부분의 search와 메인페이지의 saerch를 같은 컴포넌트로 사용
+
+2. 금주의 로테이션 챔피언 표시
+
+- 라이엇 API를 이용하여 금주의 로테이션 챔피언 데이터 받아오기
+- 해당 챔피언의 이름과 이미지를 이용하여 한눈에 확인 가능하도록 표시
+- 클릭 시 해당 챔피언 정보 페이지로 이동
 
 ### 검색 페이지
-
-##### 필요한 데이터
 
 1. summoner 정보
 
 - `id`, `accountId`, `puuid`, `name`, `profileIconId`, `revisionDate`, `summonerLevel`
+- 소환사명으로 검색했을 때 검색된 params를 이용하여 소환사의 정보 표시
 
 2. summonerID + Reague 매칭
 
@@ -54,3 +57,11 @@
   - 게임중이 아닐 경우 게임중이 아닙니다. 라는 메세지 표시
   - 레드팀, 블루팀 구분하여 데이터 내려주기
   - 게임모드와 게임 길이 데이터를 받아와서 표시
+
+### 챔피언 분석 페이지
+
+1. 챔피언 전체 확인하기
+
+- 라이엇 API를 이용하여 챔피언 전체 리스트 불러오기
+- 각 포지션에 따라 클릭하여 구분하여 확인 가능하도록 설정
+- 클릭 시 해당 챔피언 정보 확인 페이지로 이동

@@ -5,7 +5,7 @@ const MainSearchTempletBlock = styled.div`
   width: 100%;
   height: 380px;
   background-color: #666;
-  background: url('./images/Challenges_Launch_Final.jpg');
+  background: url('/images/Challenges_Launch_Final.jpg');
   display: flex;
   align-items: center;
   justify-content: center;
