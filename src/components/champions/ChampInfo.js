@@ -28,9 +28,11 @@ const SkillList = styled.div`
   }
 `;
 
-const ChampInfo = () => {
+const ChampInfo = ({ champInfo }) => {
   const champ = data.data.Aatrox;
   // console.log(champ);
+
+  console.log(champInfo);
 
   return (
     <>
