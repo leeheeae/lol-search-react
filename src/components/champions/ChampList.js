@@ -10,7 +10,7 @@ const ChampListBlock = styled.div`
 `;
 
 const ChampListBox = styled.ul`
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -19,7 +19,10 @@ const ChampItem = styled.li`
   width: 70px;
   margin: 11px;
   cursor: pointer;
-  position: relative;
+
+  .innerBox {
+    position: relative;
+  }
 
   img {
     width: 100%;
@@ -37,22 +40,66 @@ const ChampItem = styled.li`
     bottom: 2px;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  .tag {
+    margin: 3px 0;
+    font-size: 0.82rem;
+    color: #797991;
+  }
 `;
 
 const TagTabs = styled.ul`
-  display: flex;
+  display: inline-flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #797991;
 
+  li + li {
+    border-left: 1px solid #ccc;
+  }
   li {
-    padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 1rem 1.4rem;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
 
     &.active {
-      color: red;
+      background-color: #797991;
+      color: #fff;
     }
   }
 `;
 
 const ChampList = ({ champInfo, activeIndex, onClickTab, onClickChamp }) => {
+  const champRetrun = (active) => {
+    if (active === 0) return champInfo;
+    return champInfo.filter((item) =>
+      item.tags.includes(champListTabs[active].tag),
+    );
+  };
+
+  const fillterChamp = (active) => {
+    switch (active) {
+      case 0:
+        return champRetrun(0);
+      case 1:
+        return champRetrun(1);
+      case 2:
+        return champRetrun(2);
+      case 3:
+        return champRetrun(3);
+      case 4:
+        return champRetrun(4);
+      case 5:
+        return champRetrun(5);
+      case 6:
+        return champRetrun(6);
+      default:
+        break;
+    }
+  };
   return (
     <ChampListBlock>
       <TagTabs>
@@ -62,26 +109,27 @@ const ChampList = ({ champInfo, activeIndex, onClickTab, onClickChamp }) => {
             onClick={() => onClickTab(index)}
             key={index}
           >
-            {tab}
+            {tab.name}
           </li>
         ))}
-      </TagTabs>{' '}
+      </TagTabs>
       <ChampListBox>
-        {champInfo.map((champ) => (
+        {fillterChamp(activeIndex).map((champ) => (
           <ChampItem key={champ.key}>
-            <div onClick={() => onClickChamp(champ.id)}>
+            <div onClick={() => onClickChamp(champ.id)} className="innerBox">
               <img
                 src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${champ.image.full}`}
                 alt=""
               />
+              <div className="name">{champ.name}</div>
             </div>
-            <div className="name">{champ.name}</div>
-            {/* <div>
-            태그 :
-            {champ.tags.map((tag, index) => (
-              <span key={index}>#{champTagsConfig[tag]}</span>
-            ))}
-          </div> */}
+            <div>
+              {champ.tags.map((tag, index) => (
+                <div key={index} className="tag">
+                  #{champTagsConfig[tag]}
+                </div>
+              ))}
+            </div>
           </ChampItem>
         ))}
       </ChampListBox>

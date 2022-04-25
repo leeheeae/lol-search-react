@@ -38,11 +38,11 @@ export const gameModeConfig = {
 
 //챔피언 리스트 탭
 export const champListTabs = [
-  '전체',
-  '암살자',
-  '전사',
-  '마법사',
-  '원거리딜러',
-  '서포터',
-  '탱커',
+  { name: '전체', tag: '' },
+  { name: '암살자', tag: 'Assassin' },
+  { name: '전사', tag: 'Fighter' },
+  { name: '마법사', tag: 'Mage' },
+  { name: '원거리딜러', tag: 'Marksman' },
+  { name: '서포터', tag: 'Support' },
+  { name: '탱커', tag: 'Tank' },
 ];
