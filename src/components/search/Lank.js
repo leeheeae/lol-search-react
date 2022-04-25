@@ -52,7 +52,9 @@ const Lank = ({ reague }) => {
           {reague.tier && (
             <ImgBox>
               <img
-                src={`images/ranked-emblems/Emblem_${capitalizeString(
+                src={`${
+                  process.env.PUBLIC_URL
+                }/images/ranked-emblems/Emblem_${capitalizeString(
                   reague.tier,
                 )}.png`}
                 alt="dd"

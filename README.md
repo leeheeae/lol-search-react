@@ -24,3 +24,13 @@
     - 실패 값은 error에 넣음
 - Redux-saga를 이용하여 비동기 처리
 - api 처리 완료하면 검색 리스트에 나타나도록 설정
+
+#### 검색 페이지
+
+##### 필요한 데이터
+
+- summoner 정보
+  - `id`, `accountId`, `puuid`, `name`, `profileIconId`, `revisionDate`, `summonerLevel`
+- summonerID + Reague 매칭
+- 티어별 이미지 변경
+-

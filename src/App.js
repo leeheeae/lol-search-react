@@ -16,7 +16,7 @@ const App = () => {
       <Background>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/search" element={<SearchPage />} />
+          <Route path="/search/:nickname" element={<SearchPage />} />
           <Route path="/champ" element={<ChampPage />} />
 
           {/* NotFound */}
