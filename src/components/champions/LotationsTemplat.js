@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentsTitle from '../common/ContentsTitle';
-import Lotations from './Lotations';
 
 const LotationsTemplatBlock = styled.div`
   width: 100%;
@@ -18,16 +17,11 @@ const ListBox = styled.ul`
   flex-wrap: wrap;
 `;
 
-const LotationsTemplat = ({ marginTop, champInfo, loationsChamps }) => {
+const LotationsTemplat = ({ children, marginTop }) => {
   return (
     <LotationsTemplatBlock marginTop={marginTop}>
       <ContentsTitle text={'금주의 로테이션 챔피언'} />
-      <ListBox>
-        {loationsChamps &&
-          loationsChamps.map((champ) => (
-            <Lotations champInfo={champInfo} champId={champ} key={champ} />
-          ))}
-      </ListBox>
+      <ListBox>{children}</ListBox>
     </LotationsTemplatBlock>
   );
 };

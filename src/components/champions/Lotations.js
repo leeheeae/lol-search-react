@@ -27,20 +27,23 @@ const ChampImg = styled.img`
   margin-right: 10px;
 `;
 
-const Lotations = ({ champId, champInfo }) => {
+const Lotations = ({ loationsChamps, champList, onClickChamp }) => {
   return (
     <>
-      <LotationsBlock>
-        <ChampImg
-          src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
-            champInfo && infoSearchBox(champInfo, champId).image.full
-          }`}
-          alt="champ-icon"
-        />
-        <p className="name">
-          {champInfo && infoSearchBox(champInfo, champId).name}
-        </p>
-      </LotationsBlock>
+      {loationsChamps.map((champ) => (
+        <LotationsBlock
+          onClick={() => onClickChamp(infoSearchBox(champList, champ).id)}
+          key={champ}
+        >
+          <ChampImg
+            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+              infoSearchBox(champList, champ).image.full
+            }`}
+            alt="champ-icon"
+          />
+          <p className="name">{infoSearchBox(champList, champ).name}</p>
+        </LotationsBlock>
+      ))}
     </>
   );
 };

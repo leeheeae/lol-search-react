@@ -52,7 +52,7 @@ const TagTabs = styled.ul`
   }
 `;
 
-const ChampList = ({ champInfo, activeIndex, onClickTab }) => {
+const ChampList = ({ champInfo, activeIndex, onClickTab, onClickChamp }) => {
   return (
     <ChampListBlock>
       <TagTabs>
@@ -69,7 +69,7 @@ const ChampList = ({ champInfo, activeIndex, onClickTab }) => {
       <ChampListBox>
         {champInfo.map((champ) => (
           <ChampItem key={champ.key}>
-            <div>
+            <div onClick={() => onClickChamp(champ.id)}>
               <img
                 src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${champ.image.full}`}
                 alt=""

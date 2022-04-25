@@ -3,6 +3,7 @@ import Header from '../components/common/Header';
 import Response from '../components/common/Response';
 import MainSearchTemplat from '../components/main/MainSearchTemplat';
 import SearchContainer from '../containers/summoner/SearchContainer';
+import LotationsTemplat from '../components/champions/LotationsTemplat';
 import LotationsContainer from '../containers/champions/LotationsContainer';
 
 const MainPage = () => {
@@ -15,7 +16,9 @@ const MainPage = () => {
         </Response>
       </MainSearchTemplat>
       <Response>
-        <LotationsContainer marginTop={'5rem'} />
+        <LotationsTemplat marginTop={'5rem'}>
+          <LotationsContainer />
+        </LotationsTemplat>
       </Response>
     </>
   );
