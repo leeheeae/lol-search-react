@@ -29,6 +29,12 @@ const InfoBox = styled.div`
   }
 `;
 
+const Title = styled.h2`
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+`;
+
 const SkillList = styled.div`
   display: flex;
   align-items: center;
@@ -44,13 +50,10 @@ const SkinList = styled.div`
 
   .skinBox {
     margin-top: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid #131629;
     border-radius: 3px;
     background-color: #fff;
     display: flex;
-  }
-  h1 {
-    font-size: 2rem;
   }
   img {
     width: 100%;
@@ -99,6 +102,58 @@ const SkinList = styled.div`
   }
 `;
 
+const Tips = styled.div`
+  margin-top: 5rem;
+
+  .tips {
+    border: 2px solid #131629;
+    border-radius: 3px;
+    display: flex;
+    background-color: #fff;
+
+    > div {
+      width: 50%;
+      padding: 1.1rem;
+
+      & + div {
+        border-left: 1px solid #ccc;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    .ally {
+      h3 {
+        color: #2f42bb;
+      }
+    }
+
+    .enemy {
+      h3 {
+        color: #f56d91;
+      }
+    }
+
+    ul {
+      margin-top: 8px;
+    }
+
+    li {
+      font-size: 0.96rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      &::before {
+        content: '\\B7';
+        margin-right: 6px;
+      }
+    }
+  }
+`;
+
+// \\B7
+
 const ChampInfo = ({ champInfo, skinActiveIndex, onClickSkinTab }) => {
   return (
     <>
@@ -128,8 +183,31 @@ const ChampInfo = ({ champInfo, skinActiveIndex, onClickSkinTab }) => {
               </SkillList>
             </InfoBox>
           </ChampInfoBox>
+
+          <Tips>
+            <Title>TIPS</Title>
+            <div className="tips">
+              <div className="ally">
+                <h3>아군 팁 😎</h3>
+                <ul>
+                  {champInfo.allytips.map((tip) => (
+                    <li>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="enemy">
+                <h3>적군 팁 😎</h3>
+                <ul>
+                  {champInfo.enemytips.map((tip) => (
+                    <li>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Tips>
+
           <SkinList>
-            <h1>Skin</h1>
+            <Title>SKIN</Title>
             <div className="skinBox">
               <ul className="list">
                 {champInfo.skins.map((skin) => (
