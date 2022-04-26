@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/lol-search-react/static/css/main.8e12fb03.css",
-    "main.js": "/lol-search-react/static/js/main.04907130.js",
+    "main.js": "/lol-search-react/static/js/main.fed6820d.js",
     "static/js/787.fe26222f.chunk.js": "/lol-search-react/static/js/787.fe26222f.chunk.js",
     "static/media/Pretendard-Black.woff": "/lol-search-react/static/media/Pretendard-Black.cf1615e167bc6b1e405e.woff",
     "static/media/Pretendard-ExtraBold.woff": "/lol-search-react/static/media/Pretendard-ExtraBold.27d9420000d3e530abc5.woff",
@@ -21,6 +21,7 @@
     "static/media/Pretendard-Light.woff2": "/lol-search-react/static/media/Pretendard-Light.be8f9071b9fb81c86aa0.woff2",
     "static/media/Pretendard-ExtraLight.woff2": "/lol-search-react/static/media/Pretendard-ExtraLight.80277e48c3515083f8a7.woff2",
     "static/media/Pretendard-Thin.woff2": "/lol-search-react/static/media/Pretendard-Thin.535223089b69ef6a3759.woff2",
+    "static/media/Challenges_Launch_Final.jpg": "/lol-search-react/static/media/Challenges_Launch_Final.72f85bdc89a5820bfa1d.jpg",
     "static/media/Pretendard-Black.subset.woff": "/lol-search-react/static/media/Pretendard-Black.subset.757d46e9cf762c8cb03e.woff",
     "static/media/Pretendard-ExtraBold.subset.woff": "/lol-search-react/static/media/Pretendard-ExtraBold.subset.452b81225063d92c0561.woff",
     "static/media/Pretendard-Bold.subset.woff": "/lol-search-react/static/media/Pretendard-Bold.subset.93f3ef5147b9ba8eb655.woff",
@@ -41,11 +42,11 @@
     "static/media/Pretendard-Thin.subset.woff2": "/lol-search-react/static/media/Pretendard-Thin.subset.b73eb8bf3384994b4c28.woff2",
     "index.html": "/lol-search-react/index.html",
     "main.8e12fb03.css.map": "/lol-search-react/static/css/main.8e12fb03.css.map",
-    "main.04907130.js.map": "/lol-search-react/static/js/main.04907130.js.map",
+    "main.fed6820d.js.map": "/lol-search-react/static/js/main.fed6820d.js.map",
     "787.fe26222f.chunk.js.map": "/lol-search-react/static/js/787.fe26222f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8e12fb03.css",
-    "static/js/main.04907130.js"
+    "static/js/main.fed6820d.js"
   ]
 }
