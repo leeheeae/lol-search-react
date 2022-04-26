@@ -23,7 +23,7 @@ const LotationsContainer = () => {
   useEffect(() => {
     dispatch(champSearch());
     dispatch(loationsChamp());
-  }, [dispatch]);
+  }, []);
 
   if (!champList || !loationsChamps) {
     return null;

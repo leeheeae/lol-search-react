@@ -9,13 +9,19 @@ import {
 } from '../../modules/summoner';
 import { summonerSpectatorSearch } from '../../modules/summoner';
 
-const SearchListContainer = () => {
+const SearchListContainer = ({ setInfoView }) => {
   const dispatch = useDispatch();
   let params = useParams();
 
-  const { summoner } = useSelector(({ summoner }) => ({
+  const { summoner, loading } = useSelector(({ summoner, loading }) => ({
     summoner: summoner.summoner,
+    loading: loading['summoner/SUMMONER_SEARCH'],
   }));
+
+  const onClickSpectator = () => {
+    dispatch(summonerSpectatorSearch(summoner.id));
+    setInfoView(true);
+  };
 
   useEffect(() => {
     const nickname =
@@ -23,8 +29,9 @@ const SearchListContainer = () => {
         ? params.nickname.split('').join(' ')
         : params.nickname;
 
+    setInfoView(false);
     dispatch(summonerSearch(nickname));
-  }, [params.nickname]);
+  }, [dispatch, params.nickname]);
 
   useEffect(() => {
     if (!summoner) return;
@@ -33,11 +40,9 @@ const SearchListContainer = () => {
     return () => {
       dispatch(summonerReagueClear());
     };
-  }, [summoner]);
+  }, [dispatch, summoner]);
 
-  const onClickSpectator = () => {
-    dispatch(summonerSpectatorSearch(summoner.id));
-  };
+  if (loading) return null;
 
   return <SearchList summoner={summoner} onClickSpectator={onClickSpectator} />;
 };

@@ -7,6 +7,8 @@ import { takeLatest } from '@redux-saga/core/effects';
 
 const CHANGE_FIELD = 'summoner/CHANGE_FIELD';
 const SUMMONER_REAGUE_CLEAR = 'summoner/SUMMONER_REAGUE_CLEAR';
+const SUMMONER_SPECTATOR_SEARCH_CLEAR =
+  'summoner/SUMMONER_SPECTATOR_SEARCH_CLEAR';
 const [SUMMONER_SEARCH, SUMMONER_SEARCH_SUCCESS, SUMMONER_SEARCH_FAILURE] =
   createRequestActionTypes('summoner/SUMMONER_SEARCH');
 const [SUMMONER_REAGUE, SUMMONER_REAGUE_SUCCESS, SUMMONER_REAGUE_FAILURE] =
@@ -21,6 +23,9 @@ export const changeField = createAction(CHANGE_FIELD, ({ value }) => ({
   value,
 }));
 export const summonerReagueClear = createAction(SUMMONER_REAGUE_CLEAR);
+export const summonerSpectatorClear = createAction(
+  SUMMONER_SPECTATOR_SEARCH_CLEAR,
+);
 export const summonerSearch = createAction(SUMMONER_SEARCH, (name) => name);
 export const summonerReague = createAction(
   SUMMONER_REAGUE,
@@ -102,6 +107,10 @@ const summoner = handleActions(
     [SUMMONER_REAGUE_CLEAR]: (state) => ({
       ...state,
       summonerReague: [],
+    }),
+    [SUMMONER_SPECTATOR_SEARCH_CLEAR]: (state) => ({
+      ...state,
+      summonerSpectator: {},
     }),
     [SUMMONER_SPECTATOR_SEARCH_SUCCESS]: (
       state,

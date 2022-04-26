@@ -22,13 +22,6 @@ const ChampImg = styled.img`
   margin-right: 10px;
 `;
 
-const TierIcon = styled.div`
-  display: inline-block;
-  padding: 6px 8px;
-  background-color: pink;
-  font-size: 13px;
-`;
-
 const InfoBox = styled.div`
   h2 {
     font-size: 15px;
@@ -54,34 +47,31 @@ const InfoBox = styled.div`
 const SpectatorItem = ({ summonerInfo, champInfo, spellInfo }) => {
   return (
     <>
-      {summonerInfo && (
-        <SpectatorItemBlock>
-          <ChampImg
-            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
-              champInfo &&
-              infoSearchBox(champInfo, summonerInfo.championId).image.full
-            }`}
-            alt="champ-icon"
-          />
-          <InfoBox>
-            <h2>{summonerInfo.summonerName}</h2>
-            <div className="spell-box">
-              <img
-                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                  infoSearchBox(spellInfo, summonerInfo.spell1Id).id
-                }.png`}
-                alt="icon"
-              />
-              <img
-                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                  infoSearchBox(spellInfo, summonerInfo.spell2Id).id
-                }.png`}
-                alt="icon"
-              />
-            </div>
-          </InfoBox>
-        </SpectatorItemBlock>
-      )}
+      <SpectatorItemBlock>
+        <ChampImg
+          src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+            infoSearchBox(champInfo, summonerInfo.championId).image.full
+          }`}
+          alt="champ-icon"
+        />
+        <InfoBox>
+          <h2>{summonerInfo.summonerName}</h2>
+          <div className="spell-box">
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                infoSearchBox(spellInfo, summonerInfo.spell1Id).id
+              }.png`}
+              alt="icon"
+            />
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                infoSearchBox(spellInfo, summonerInfo.spell2Id).id
+              }.png`}
+              alt="icon"
+            />
+          </div>
+        </InfoBox>
+      </SpectatorItemBlock>
     </>
   );
 };

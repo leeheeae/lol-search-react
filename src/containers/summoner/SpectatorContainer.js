@@ -4,16 +4,24 @@ import { champSearch } from '../../modules/champ';
 import { spellSearch } from '../../modules/spell';
 import Spectator from '../../components/search/Spectator';
 
-const SpectatorContainer = () => {
+const SpectatorContainer = ({ infoView }) => {
   const dispatch = useDispatch();
+
   const [error, setError] = useState(null);
-  const { summonerSpectatorError, summonerSpectator, champInfo, spellInfo } =
-    useSelector(({ summoner, champ, spell }) => ({
-      summonerSpectatorError: summoner.error.summonerSpectatorError,
-      summonerSpectator: summoner.summonerSpectator,
-      champInfo: champ.champInfo,
-      spellInfo: spell.spellInfo,
-    }));
+
+  const {
+    summonerSpectatorError,
+    summonerSpectator,
+    champList,
+    spellInfo,
+    loading,
+  } = useSelector(({ summoner, champ, spell, loading }) => ({
+    summonerSpectatorError: summoner.error.summonerSpectatorError,
+    summonerSpectator: summoner.summonerSpectator,
+    champList: champ.champList.data,
+    spellInfo: spell.spellInfo,
+    loading: loading['summoner/SUMMONER_SPECTATOR_SEARCH'],
+  }));
 
   useEffect(() => {
     if (summonerSpectatorError) {
@@ -26,14 +34,23 @@ const SpectatorContainer = () => {
   useEffect(() => {
     dispatch(champSearch());
     dispatch(spellSearch());
-  }, [summonerSpectator]);
+  }, [dispatch, summonerSpectator]);
+
+  if (!summonerSpectator || !champList) {
+    return null;
+  }
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <Spectator
       error={error}
       summonerSpectator={summonerSpectator}
-      champInfo={champInfo}
+      champList={champList}
       spellInfo={spellInfo}
+      infoView={infoView}
     />
   );
 };
