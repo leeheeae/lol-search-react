@@ -69,7 +69,7 @@ const Skill = ({ skill, passive }) => {
           <div className="skill-key">{skill.id.substr(-1)}</div>
           <div className="skill-text">
             <h4 className="spell-name">{skill.name}</h4>
-            <div>{skill.cooldown}</div>
+            <div>쿨타임 : {skill.cooldownBurn}</div>
             <div>소모: {skill.costType}</div>
             <div>범위: {skill.rangeBurn}</div>
             <div className="spell-description">{skill.description}</div>
