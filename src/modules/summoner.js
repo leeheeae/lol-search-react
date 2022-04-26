@@ -57,7 +57,7 @@ export function* summonerSaga() {
 
 const initialState = {
   summonerInput: '',
-  summoner: null,
+  summoner: {},
   summonerReague: [],
   summonerSpectator: {},
   error: {

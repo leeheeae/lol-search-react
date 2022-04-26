@@ -36,7 +36,7 @@ const SpectatorContainer = ({ infoView }) => {
     dispatch(spellSearch());
   }, [dispatch, summonerSpectator]);
 
-  if (!summonerSpectator || !champList) {
+  if (!summonerSpectator || !champList || !spellInfo) {
     return null;
   }
 

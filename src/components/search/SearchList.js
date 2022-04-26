@@ -67,25 +67,21 @@ const WatchingBtn = styled.button`
 const SearchList = ({ summoner, onClickSpectator }) => {
   return (
     <>
-      <Response>
-        {summoner !== null && (
-          <SummonerInfoBox>
-            <IconBox>
-              <img
-                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${summoner.profileIconId}.png`}
-                alt="icon"
-              />
-              <p className="level_icon">{summoner.summonerLevel}</p>
-            </IconBox>
-            <InfoBox>
-              <h3 className="summoner_name">{summoner.name}</h3>
-              <WatchingBtn onClick={() => onClickSpectator()}>
-                인게임정보 확인하기 <IoMdSwitch size="24px" />
-              </WatchingBtn>
-            </InfoBox>
-          </SummonerInfoBox>
-        )}
-      </Response>
+      <SummonerInfoBox>
+        <IconBox>
+          <img
+            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/${summoner.profileIconId}.png`}
+            alt="icon"
+          />
+          <p className="level_icon">{summoner.summonerLevel}</p>
+        </IconBox>
+        <InfoBox>
+          <h3 className="summoner_name">{summoner.name}</h3>
+          <WatchingBtn onClick={() => onClickSpectator()}>
+            인게임정보 확인하기 <IoMdSwitch size="24px" />
+          </WatchingBtn>
+        </InfoBox>
+      </SummonerInfoBox>
     </>
   );
 };

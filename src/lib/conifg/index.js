@@ -46,3 +46,9 @@ export const champListTabs = [
   { name: '서포터', tag: 'Support' },
   { name: '탱커', tag: 'Tank' },
 ];
+
+//match Game Type
+export const matchGameType = ['', 'ranked', 'normal', 'tourney', 'tutorial'];
+
+//RecordTabs
+export const RecordTabs = ['전체', '솔로랭크', '자유랭크', '일반', '총력전'];

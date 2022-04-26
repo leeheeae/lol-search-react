@@ -24,6 +24,7 @@ const SearchListContainer = ({ setInfoView }) => {
   };
 
   useEffect(() => {
+    if (!params.nickname) return;
     const nickname =
       params.nickname.length <= 2
         ? params.nickname.split('').join(' ')
@@ -31,18 +32,20 @@ const SearchListContainer = ({ setInfoView }) => {
 
     setInfoView(false);
     dispatch(summonerSearch(nickname));
-  }, [dispatch, params.nickname]);
+  }, [dispatch, setInfoView, params.nickname]);
 
   useEffect(() => {
-    if (!summoner) return;
+    if (!summoner.id) return;
     dispatch(summonerReague(summoner.id));
 
     return () => {
       dispatch(summonerReagueClear());
     };
-  }, [dispatch, summoner]);
+  }, [dispatch, summoner.id]);
 
   if (loading) return null;
+
+  if (!summoner) return null;
 
   return <SearchList summoner={summoner} onClickSpectator={onClickSpectator} />;
 };

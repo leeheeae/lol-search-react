@@ -45,7 +45,7 @@ const Spectator = ({
   return (
     <>
       {infoView && (
-        <Response>
+        <>
           {summonerSpectator.length !== 0 && (
             <SpectatorBlock>
               {summonerSpectator.gameLength && (
@@ -88,7 +88,7 @@ const Spectator = ({
               </SpectatorList>
             </SpectatorBlock>
           )}
-        </Response>
+        </>
       )}
     </>
   );
