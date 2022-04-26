@@ -42,7 +42,7 @@ const SkinList = styled.div`
   }
   img {
     width: 100%;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   .list {
@@ -70,11 +70,24 @@ const SkinList = styled.div`
   }
 
   .bigImg {
-    padding: 1rem;
+    position: relative;
+    padding: 0.5rem;
+    overflow: hidden;
+
+    .skinName {
+      width: 100%;
+      padding: 0.8rem;
+      color: #fff;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
   }
 `;
 
-const ChampInfo = ({ champInfo }) => {
+const ChampInfo = ({ champInfo, skinActiveIndex, onClickSkinTab }) => {
   return (
     <>
       {champInfo && (
@@ -101,10 +114,10 @@ const ChampInfo = ({ champInfo }) => {
             <div className="skinBox">
               <ul className="list">
                 {champInfo.skins.map((skin) => (
-                  <li key={skin.num}>
+                  <li key={skin.num} onClick={() => onClickSkinTab(skin.num)}>
                     <div>
                       <img
-                        src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_${skin.num}.jpg`}
+                        src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champInfo.id}_${skin.num}.jpg`}
                         alt={skin.name}
                       />
                     </div>
@@ -114,9 +127,14 @@ const ChampInfo = ({ champInfo }) => {
               </ul>
               <div className="bigImg">
                 <img
-                  src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg`}
+                  src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champInfo.id}_${skinActiveIndex}.jpg`}
                   alt={'img'}
                 />
+                <h3 className="skinName">
+                  {champInfo.skins
+                    .filter((skin) => skin.num === skinActiveIndex)
+                    .map((item) => item.name)}
+                </h3>
               </div>
             </div>
           </SkinList>
