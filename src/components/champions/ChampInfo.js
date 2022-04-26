@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Response from '../common/Response';
 import Skill from './Skill';
+import { champListTabs } from '../../lib/conifg';
 
 const ChampInfoBox = styled.div`
   margin-top: 50px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 
   .champ-name {
     font-size: 1.6rem;
@@ -15,12 +16,23 @@ const ChampInfoBox = styled.div`
 
 const InfoBox = styled.div`
   margin-left: 30px;
+
+  .tags {
+    margin-bottom: 6px;
+    font-size: 0.86rem;
+    color: #888;
+    display: flex;
+
+    li + li {
+      margin-left: 6px;
+    }
+  }
 `;
 
 const SkillList = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.4rem;
 
   > div + div {
     margin-left: 10px;
@@ -100,6 +112,13 @@ const ChampInfo = ({ champInfo, skinActiveIndex, onClickSkinTab }) => {
               />
             </div>
             <InfoBox>
+              <ul className="tags">
+                {champInfo.tags.map((tag) =>
+                  champListTabs
+                    .filter((item) => item.tag === tag)
+                    .map((name) => <li key={name.name}>#{name.name}</li>),
+                )}
+              </ul>
               <h2 className="champ-name"> {champInfo.name}</h2>
               <SkillList>
                 <Skill passive={champInfo.passive} />
