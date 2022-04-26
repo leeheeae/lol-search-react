@@ -5,14 +5,13 @@ import SearchContainer from '../../containers/summoner/SearchContainer';
 
 const HeaderBlock = styled.header`
   width: 100%;
-  /* background-color: #8d8daa; */
   background-color: #131629;
 
   .inner-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1024px;
+    width: 1024px;
     margin: auto;
     padding: 20px 0;
 

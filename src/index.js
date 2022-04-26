@@ -27,7 +27,7 @@ sagaMiddleware.run(rootSaga);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <HelmetProvider>
           <App />
         </HelmetProvider>
