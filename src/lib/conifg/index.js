@@ -51,7 +51,7 @@ export const champListTabs = [
 export const gameType = ['', 'ranked', 'normal', 'tutorial'];
 
 //RecordTabs
-export const RecordTabs = [
+export const RecordTabsConfig = [
   '전체',
   '솔로랭크',
   '자유랭크',

@@ -4,7 +4,7 @@ import Response from '../components/common/Response';
 import SearchListContainer from '../containers/summoner/SearchListContainer';
 import LankContainer from '../containers/summoner/LankContainer';
 import SpectatorContainer from '../containers/summoner/SpectatorContainer';
-import RecordContainer from '../containers/match/RecordContainer';
+import RecordTabsContainer from '../containers/match/RecordTabsContainer';
 
 const SearchPage = () => {
   const [infoView, setInfoView] = useState(false);
@@ -16,7 +16,7 @@ const SearchPage = () => {
         <SearchListContainer setInfoView={setInfoView} />
         <LankContainer />
         <SpectatorContainer infoView={infoView} />
-        <RecordContainer />
+        <RecordTabsContainer />
       </Response>
     </>
   );
