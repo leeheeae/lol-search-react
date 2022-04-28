@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Record from '../../components/match/Record';
 import { matchByPuuid } from '../../modules/match';
-import { matchGameType } from '../../lib/conifg';
+import { gameType } from '../../lib/conifg';
 
 const RecordContainer = () => {
   const dispatch = useDispatch();
@@ -14,15 +14,16 @@ const RecordContainer = () => {
     loading: loading['match/MATCH_BY_PUUID'],
   }));
 
-  const onClickRecordTab = (idx) => {
+  const onClickRecordTab = (idx, queue, type) => {
     setRecordActive(idx);
+    dispatch(matchByPuuid(summoner.puuid, queue, type));
   };
 
   useEffect(() => {
     if (!summoner.puuid) return;
 
-    dispatch(matchByPuuid(summoner.puuid, 450, matchGameType[2]));
-  }, [dispatch, summoner.puuid]);
+    dispatch(matchByPuuid(summoner.puuid, 450, gameType[2]));
+  }, [dispatch, summoner.puuid, recordActive]);
 
   if (!summoner) return null;
 

@@ -48,10 +48,16 @@ export const champListTabs = [
 ];
 
 //match Game Type
-export const matchGameType = ['', 'ranked', 'normal', 'tourney', 'tutorial'];
+export const gameType = ['', 'ranked', 'normal', 'tutorial'];
 
 //RecordTabs
-export const RecordTabs = ['전체', '솔로랭크', '자유랭크', '일반', '총력전'];
+export const RecordTabs = [
+  '전체',
+  '솔로랭크',
+  '자유랭크',
+  '일반',
+  '무작위총력전',
+];
 
 //QUEUETYPE
 const QUEUETYPE = {
@@ -79,10 +85,10 @@ const QUEUETYPE = {
 
 //QUEUETYPE ko
 const ko = {
-  solo: '솔랭',
+  solo: '솔로랭크',
   norm: '일반',
-  aram: '칼바람',
-  flex: '자랭',
+  aram: '무작위총력전',
+  flex: '자유랭크',
   nbg: '돌넥',
   usb: '궁주문서',
   urf: 'URF',
@@ -94,13 +100,34 @@ const ko = {
   clash: '격전',
 };
 
-const key = Object.values(QUEUETYPE);
-const key2 = Object.entries(QUEUETYPE);
-
 //QUEUETYPE MATCH
-export const quequeTyepMatch = (key) => {
-  const value = QUEUETYPE[key];
-  const result = ko[value];
+// export const quequeTyepMatch = (key) => {
+//   const value = QUEUETYPE[key];
+//   const result = ko[value];
 
-  console.log(result);
+//   console.log(result);
+// };
+
+export const quequeTyepMatch = (value) => {
+  const key = Object.keys(ko).find((key) => ko[key] === value);
+  const result = Object.keys(QUEUETYPE).find(
+    (queue) => QUEUETYPE[queue] === key,
+  );
+
+  if (result === undefined) return '';
+  return result;
+};
+
+export const matchGameType = (queue) => {
+  const que = Number(queue);
+
+  if (que === 400 || que === 430 || que === 450) {
+    return 'normal';
+  }
+
+  if (que === 420 || que === 440) {
+    return 'ranked';
+  }
+
+  return '';
 };

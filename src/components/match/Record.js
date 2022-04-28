@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RecordTabs, quequeTyepMatch } from '../../lib/conifg';
+import { RecordTabs, quequeTyepMatch, matchGameType } from '../../lib/conifg';
 
 const RecordBlock = styled.div`
   margin-top: 4rem;
@@ -30,14 +30,18 @@ const RecordTabsBlock = styled.ul`
 `;
 
 const Record = ({ recordActive, onClickRecordTab }) => {
-  quequeTyepMatch(450);
-
   return (
     <RecordBlock>
       <RecordTabsBlock>
         {RecordTabs.map((tab, index) => (
           <li
-            onClick={() => onClickRecordTab(index)}
+            onClick={() =>
+              onClickRecordTab(
+                index,
+                quequeTyepMatch(tab),
+                matchGameType(quequeTyepMatch(tab)),
+              )
+            }
             key={index}
             className={recordActive === index ? 'active' : ''}
           >
