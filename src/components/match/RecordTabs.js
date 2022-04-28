@@ -7,6 +7,7 @@ import {
 } from '../../lib/conifg';
 
 const RecordTabsBlock = styled.ul`
+  margin-top: 5rem;
   display: flex;
 
   li + li {
