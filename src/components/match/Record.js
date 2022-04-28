@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RecordTabs } from '../../lib/conifg';
+import { RecordTabs, quequeTyepMatch } from '../../lib/conifg';
 
 const RecordBlock = styled.div`
   margin-top: 4rem;
@@ -9,20 +9,31 @@ const RecordBlock = styled.div`
 const RecordTabsBlock = styled.ul`
   display: flex;
 
+  li + li {
+    margin-left: 8px;
+  }
+
   li {
-    border: 1px solid #ccc;
-    padding: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 0.94rem;
+    font-weight: 500;
+    cursor: pointer;
 
     &.active {
-      color: blue;
+      color: #fff;
+      background: #797991;
     }
   }
 `;
 
 const Record = ({ recordActive, onClickRecordTab }) => {
+  quequeTyepMatch(450);
+
   return (
     <RecordBlock>
-      <h1>레코드</h1>
       <RecordTabsBlock>
         {RecordTabs.map((tab, index) => (
           <li
@@ -30,7 +41,6 @@ const Record = ({ recordActive, onClickRecordTab }) => {
             key={index}
             className={recordActive === index ? 'active' : ''}
           >
-            {index}
             {tab}
           </li>
         ))}

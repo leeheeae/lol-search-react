@@ -12,7 +12,7 @@ const config = {
 //소환사 게임 전적 검색
 export const matchByPuuid = ([puuid, queue, type]) => {
   const params = {
-    queue: queue,
+    queue,
     type,
     startTime: 0,
     start: 0,
