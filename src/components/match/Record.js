@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { tiemstamp } from '../../lib/tiemstamp';
 
 const RecordBlock = styled.div`
   margin-top: 20px;
@@ -12,11 +13,16 @@ const RecordItem = styled.li`
   background-color: #fff;
 `;
 
-const Record = () => {
+const Record = ({ matchByMatchIdList }) => {
+  console.log(tiemstamp(5415));
   return (
     <RecordBlock>
       <ul>
-        <RecordItem></RecordItem>
+        {matchByMatchIdList.map((item, index) => (
+          <RecordItem key={index}>
+            <div>경과시간: {tiemstamp(item.data.info.gameDuration)}</div>
+          </RecordItem>
+        ))}
       </ul>
     </RecordBlock>
   );

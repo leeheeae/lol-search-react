@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import { takeLatest, takeEvery } from '@redux-saga/core/effects';
+import { takeLatest } from '@redux-saga/core/effects';
 import * as matchAPI from '../lib/api/match';
 
 // matchByPuuid
