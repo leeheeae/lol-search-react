@@ -16,10 +16,7 @@ const [
 ] = createRequestActionTypes('match/MATCH_BY_MATCH_ID');
 
 export const matchByClear = createAction(MATCH_BY_CLEAR);
-export const matchByPuuid = createAction(
-  MATCH_BY_PUUID,
-  (puuid, queue, type) => [puuid, queue, type],
-);
+export const matchByPuuid = createAction(MATCH_BY_PUUID, (data) => data);
 
 export const matchByMatchId = createAction(
   MATCH_BY_MATCH_ID,
