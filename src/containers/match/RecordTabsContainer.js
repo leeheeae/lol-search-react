@@ -50,6 +50,7 @@ const RecordContainer = () => {
   useEffect(() => {
     if (!summoner.puuid) return;
 
+    setRecordActive(0);
     dispatch(matchByPuuid(summoner.puuid));
 
     return () => {
