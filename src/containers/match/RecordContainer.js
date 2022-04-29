@@ -2,14 +2,16 @@ import React, { useEffect } from 'react';
 import Record from '../../components/match/Record';
 import { useDispatch, useSelector } from 'react-redux';
 import { matchByMatchId } from '../../modules/match';
+import data from '../../lib/conifg/data.json';
 
 const RecordContainer = () => {
   const dispatch = useDispatch();
 
-  const { matchIdList, matchByMatchIdList, loading } = useSelector(
-    ({ match, loading }) => ({
+  const { matchIdList, matchByMatchIdList, summoner, loading } = useSelector(
+    ({ match, summoner, loading }) => ({
       matchIdList: match.matchIdList,
       matchByMatchIdList: match.matchByMatchIdList,
+      summoner: summoner.summoner.name,
       loading: loading['match/MATCH_BY_MATCH_ID'],
     }),
   );
@@ -24,7 +26,7 @@ const RecordContainer = () => {
 
   if (loading) return null;
 
-  return <Record matchByMatchIdList={matchByMatchIdList} />;
+  return <Record matchByMatchIdList={data} summoner={summoner} />;
 };
 
 export default RecordContainer;

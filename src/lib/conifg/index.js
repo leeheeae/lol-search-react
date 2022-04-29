@@ -84,7 +84,7 @@ const QUEUETYPE = {
 };
 
 //QUEUETYPE ko
-const ko = {
+export const ko = {
   solo: '솔로랭크',
   norm: '일반',
   aram: '무작위총력전',
@@ -101,13 +101,6 @@ const ko = {
 };
 
 //QUEUETYPE MATCH
-// export const quequeTyepMatch = (key) => {
-//   const value = QUEUETYPE[key];
-//   const result = ko[value];
-
-//   console.log(result);
-// };
-
 export const quequeTyepMatch = (value) => {
   const key = Object.keys(ko).find((key) => ko[key] === value);
   const result = Object.keys(QUEUETYPE).find(
@@ -131,3 +124,25 @@ export const matchGameType = (queue) => {
 
   return '';
 };
+
+//게임 이름
+export const matchGameName = (name) => {
+  const lowerName = name.toLowerCase();
+  return ko[lowerName];
+};
+
+//전적 이름으로 기록 찾기
+export const targetSummoner = (participants, summoner) => {
+  const result = participants.filter(
+    (part) => part.summonerName === summoner,
+  )[0];
+  return result;
+};
+
+//게임승리여부
+export const gameResultSearch = (targetSummoner) => {
+  const result = targetSummoner.win;
+  return result;
+};
+
+export const targetChampInfoSearch = () => {};
