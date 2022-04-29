@@ -29,12 +29,9 @@ const RecordContainer = () => {
     if (!matchIdList) return;
 
     dispatch(matchByMatchId(matchIdList));
-  }, [dispatch, matchIdList]);
-
-  useEffect(() => {
     dispatch(champInfoSearch());
     dispatch(spellSearch());
-  }, []);
+  }, [dispatch, matchIdList]);
 
   if (
     !matchIdList ||

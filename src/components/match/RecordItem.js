@@ -197,119 +197,136 @@ const RecordItemBlock = styled.div`
   }
 `;
 
+const link = {
+  item: 'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/',
+};
+
 const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
   const info = targetItem.data.info;
   const target = targetSummoner(info.participants, summoner);
 
-  <>
-    <RecordItemBlock
-      className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
-    >
-      <div className="game-info">
-        <div className="type">{matchGameName(info.gameMode)}</div>
-        <div className="time-stamp">7시간 전</div>
-        <div className="game-result">
-          {gameResultSearch(target) === true ? '승리' : '패배'}
-        </div>
-        <div className="game-length">{tiemstamp(info.gameDuration)}</div>
-      </div>
+  const itemImage = (item) => {
+    if (item === 0) return null;
+    return (
+      <img
+        src={`https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${item}.png`}
+        alt={item}
+      />
+    );
+  };
 
-      <div className="champion-info">
-        <div className="icon">
-          <img
-            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
-              infoSearchBox(champInfo, target.championId).image.full
-            }`}
-            alt="champ-icon"
-          />
-          <div className="name">{target.championName}</div>
-        </div>
-        <div className="spells">
-          <div>
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                infoSearchBox(spellInfo, target.summoner1Id).image.full
-              }`}
-              alt="spell"
-            />
+  return (
+    <>
+      <RecordItemBlock
+        className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
+      >
+        <div className="game-info">
+          <div className="type">{matchGameName(info.gameMode)}</div>
+          <div className="time-stamp">7시간 전</div>
+          <div className="game-result">
+            {gameResultSearch(target) === true ? '승리' : '패배'}
           </div>
-          <div>
+          <div className="game-length">{tiemstamp(info.gameDuration)}</div>
+        </div>
+
+        <div className="champion-info">
+          <div className="icon">
             <img
-              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                infoSearchBox(spellInfo, target.summoner2Id).image.full
+              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+                infoSearchBox(champInfo, target.championId).image.full
               }`}
-              alt="spell"
+              alt="champ-icon"
             />
+            <div className="name">{target.championName}</div>
+          </div>
+          <div className="spells">
+            <div>
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                  infoSearchBox(spellInfo, target.summoner1Id).image.full
+                }`}
+                alt="spell"
+              />
+            </div>
+            <div>
+              <img
+                src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                  infoSearchBox(spellInfo, target.summoner2Id).image.full
+                }`}
+                alt="spell"
+              />
+            </div>
+          </div>
+          <div className="runes"></div>
+        </div>
+
+        <div className="kda-info">
+          <div className="kda">
+            <span>{target.kills}</span> /{' '}
+            <span className="d">{target.deaths}</span> /{' '}
+            <span>{target.assists}</span>
+          </div>
+          <div className="ratio">
+            <span>
+              {Math.ceil(
+                ((target.kills + target.assists) / target.deaths) * 100,
+              ) / 100}
+            </span>{' '}
+            평점
           </div>
         </div>
-        <div className="runes"></div>
-      </div>
 
-      <div className="kda-info">
-        <div className="kda">
-          <span>{target.kills}</span> /{' '}
-          <span className="d">{target.deaths}</span> /{' '}
-          <span>{target.assists}</span>
+        <div className="participants">
+          <ul>
+            {info.participants
+              .filter((t) => t.teamId === 100)
+              .map((part) => (
+                <li key={part.summonerId}>
+                  <div className="icon">
+                    <img
+                      src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+                        infoSearchBox(champInfo, part.championId).image.full
+                      }`}
+                      alt="champ-icon"
+                    />
+                  </div>
+                  <div className="name">{part.summonerName}</div>
+                </li>
+              ))}
+          </ul>
+          <ul>
+            {info.participants
+              .filter((t) => t.teamId === 200)
+              .map((part) => (
+                <li key={part.summonerId}>
+                  <div className="icon">
+                    <img
+                      src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+                        infoSearchBox(champInfo, part.championId).image.full
+                      }`}
+                      alt="champ-icon"
+                    />
+                  </div>
+                  <div className="name">{part.summonerName}</div>
+                </li>
+              ))}
+          </ul>
         </div>
-        <div className="ratio">
-          <span>
-            {Math.ceil(
-              ((target.kills + target.assists) / target.deaths) * 100,
-            ) / 100}
-          </span>{' '}
-          평점
+
+        <div className="items">
+          <ul>
+            <li>{itemImage(target.item0)}</li>
+            <li>{itemImage(target.item1)}</li>
+            <li>{itemImage(target.item2)}</li>
+            <li>{itemImage(target.item6)}</li>
+            <li>{itemImage(target.item3)}</li>
+            <li>{itemImage(target.item4)}</li>
+            <li>{itemImage(target.item5)}</li>
+          </ul>
         </div>
-      </div>
-
-      <div className="participants">
-        <ul>
-          {info.participants
-            .filter((t) => t.teamId === 100)
-            .map((part) => (
-              <li key={part.summonerId}>
-                <div className="icon">
-                  <img
-                    src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
-                      infoSearchBox(champInfo, part.championId).image.full
-                    }`}
-                    alt="champ-icon"
-                  />
-                </div>
-                <div className="name">{part.summonerName}</div>
-              </li>
-            ))}
-        </ul>
-        <ul>
-          {info.participants
-            .filter((t) => t.teamId === 200)
-            .map((part) => (
-              <li key={part.summonerId}>
-                <div className="icon">
-                  <img
-                    src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
-                      infoSearchBox(champInfo, part.championId).image.full
-                    }`}
-                    alt="champ-icon"
-                  />
-                </div>
-                <div className="name">{part.summonerName}</div>
-              </li>
-            ))}
-        </ul>
-      </div>
-
-      <div className="items">
-        <ul>
-          <li>
-            <img
-              src={`https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${target.item00}.png`}
-              alt={target.item00}
-            />
-          </li>
-        </ul>
-      </div>
-    </RecordItemBlock>
-  </>;
+      </RecordItemBlock>
+    </>
+  );
 };
 
-export default RecordItem;
+export default React.memo(RecordItem);
