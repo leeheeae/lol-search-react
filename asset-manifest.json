@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/lol-search-react/static/css/main.8e12fb03.css",
-    "main.js": "/lol-search-react/static/js/main.1c40f088.js",
+    "main.js": "/lol-search-react/static/js/main.d80108ac.js",
     "static/js/787.fe26222f.chunk.js": "/lol-search-react/static/js/787.fe26222f.chunk.js",
     "static/media/Pretendard-Black.woff": "/lol-search-react/static/media/Pretendard-Black.cf1615e167bc6b1e405e.woff",
     "static/media/Pretendard-ExtraBold.woff": "/lol-search-react/static/media/Pretendard-ExtraBold.27d9420000d3e530abc5.woff",
@@ -42,11 +42,11 @@
     "static/media/Pretendard-Thin.subset.woff2": "/lol-search-react/static/media/Pretendard-Thin.subset.b73eb8bf3384994b4c28.woff2",
     "index.html": "/lol-search-react/index.html",
     "main.8e12fb03.css.map": "/lol-search-react/static/css/main.8e12fb03.css.map",
-    "main.1c40f088.js.map": "/lol-search-react/static/js/main.1c40f088.js.map",
+    "main.d80108ac.js.map": "/lol-search-react/static/js/main.d80108ac.js.map",
     "787.fe26222f.chunk.js.map": "/lol-search-react/static/js/787.fe26222f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8e12fb03.css",
-    "static/js/main.1c40f088.js"
+    "static/js/main.d80108ac.js"
   ]
 }
