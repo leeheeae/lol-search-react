@@ -144,5 +144,3 @@ export const gameResultSearch = (targetSummoner) => {
   const result = targetSummoner.win;
   return result;
 };
-
-export const targetChampInfoSearch = () => {};

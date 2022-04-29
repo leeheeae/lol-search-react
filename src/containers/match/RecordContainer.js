@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Record from '../../components/match/Record';
 import { useDispatch, useSelector } from 'react-redux';
-import { matchByMatchId } from '../../modules/match';
+import { matchByMatchId, matchByClear } from '../../modules/match';
 import { champInfoSearch } from '../../modules/champ';
 import { spellSearch } from '../../modules/spell';
 import data from '../../lib/conifg/data.json';
@@ -31,6 +31,10 @@ const RecordContainer = () => {
     dispatch(matchByMatchId(matchIdList));
     dispatch(champInfoSearch());
     dispatch(spellSearch());
+
+    return () => {
+      dispatch(matchByClear());
+    };
   }, [dispatch, matchIdList]);
 
   if (
@@ -46,7 +50,7 @@ const RecordContainer = () => {
 
   return (
     <Record
-      matchByMatchIdList={data}
+      matchByMatchIdList={matchByMatchIdList}
       summoner={summoner}
       champInfo={champInfo}
       spellInfo={spellInfo}

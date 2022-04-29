@@ -6,6 +6,7 @@ import { takeLatest } from '@redux-saga/core/effects';
 import * as matchAPI from '../lib/api/match';
 
 // matchByPuuid
+const MATCH_BY_CLEAR = 'math/MATCH_BY_CLEAR';
 const [MATCH_BY_PUUID, MATCH_BY_PUUID_SUCCESS, MATCH_BY_PUUID_FAILURE] =
   createRequestActionTypes('match/MATCH_BY_PUUID');
 const [
@@ -14,6 +15,7 @@ const [
   MATCH_BY_MATCH_ID_FAILURE,
 ] = createRequestActionTypes('match/MATCH_BY_MATCH_ID');
 
+export const matchByClear = createAction(MATCH_BY_CLEAR);
 export const matchByPuuid = createAction(
   MATCH_BY_PUUID,
   (puuid, queue, type) => [puuid, queue, type],
@@ -62,6 +64,10 @@ const match = handleActions(
     [MATCH_BY_MATCH_ID_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
+    }),
+    [MATCH_BY_CLEAR]: (state) => ({
+      ...state,
+      matchByMatchIdList: null,
     }),
   },
   initialState,

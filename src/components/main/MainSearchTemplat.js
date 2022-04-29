@@ -11,8 +11,6 @@ const MainSearchTempletBlock = styled.div`
   justify-content: center;
 `;
 
-// process.env.PUBLIC_URL;
-
 const mainSearchTemplet = ({ children }) => {
   return (
     <>

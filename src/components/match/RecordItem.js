@@ -256,6 +256,8 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
     }
   };
 
+  if (!target) return;
+
   return (
     <>
       <RecordItemBlock
