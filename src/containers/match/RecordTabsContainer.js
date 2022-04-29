@@ -32,7 +32,7 @@ const RecordContainer = () => {
   return (
     <RecordTabs
       recordActive={recordActive}
-      onClickRecordTab={onClickRecordTab}
+      // onClickRecordTab={onClickRecordTab}
     />
   );
 };
