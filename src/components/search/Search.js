@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const SearchBlock = styled.div`
   width: 260px;
@@ -10,9 +11,14 @@ const SearchBlock = styled.div`
     props.big &&
     css`
       width: 480px;
-      background-color: aqua;
       margin: auto;
     `}
+
+  .link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #fff;
+  }
 `;
 const Input = styled.input`
   width: 100%;
@@ -45,6 +51,11 @@ const Search = ({ big, onChange, onSubmit }) => {
           <BiSearch size={big ? '32' : '24'} color="#F56D91" />
         </SearchButton>
       </form>
+      {big && (
+        <Link to={`/search/hideonbush`} className="link">
+          #hide on bush
+        </Link>
+      )}
     </SearchBlock>
   );
 };

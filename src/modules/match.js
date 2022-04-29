@@ -67,6 +67,7 @@ const match = handleActions(
     }),
     [MATCH_BY_CLEAR]: (state) => ({
       ...state,
+      matchIdList: null,
       matchByMatchIdList: null,
     }),
   },

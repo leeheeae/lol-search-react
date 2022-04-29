@@ -86,7 +86,8 @@ const QUEUETYPE = {
 //QUEUETYPE ko
 export const ko = {
   solo: '솔로랭크',
-  norm: '일반',
+  normal: '일반',
+  ranked: '랭크',
   aram: '무작위총력전',
   flex: '자유랭크',
   nbg: '돌넥',
@@ -126,7 +127,18 @@ export const matchGameType = (queue) => {
 };
 
 //게임 이름
-export const matchGameName = (name) => {
+export const matchGameName = (queue) => {
+  const que = Number(queue);
+  let name;
+
+  if (que === 400 || que === 430 || que === 450) {
+    name = 'normal';
+  }
+
+  if (que === 420 || que === 440) {
+    name = 'ranked';
+  }
+
   const lowerName = name.toLowerCase();
   return ko[lowerName];
 };

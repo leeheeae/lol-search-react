@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RecordTabs from '../../components/match/RecordTabs';
-import { matchByPuuid } from '../../modules/match';
+import { matchByPuuid, matchByClear } from '../../modules/match';
 import { gameType } from '../../lib/conifg';
 
 const RecordContainer = () => {
@@ -22,7 +22,11 @@ const RecordContainer = () => {
   useEffect(() => {
     if (!summoner.puuid) return;
 
-    dispatch(matchByPuuid(summoner.puuid, 450, gameType[2]));
+    dispatch(matchByPuuid(summoner.puuid));
+
+    return () => {
+      dispatch(matchByClear());
+    };
   }, [dispatch, summoner.puuid, recordActive]);
 
   if (!summoner) return null;
@@ -32,7 +36,7 @@ const RecordContainer = () => {
   return (
     <RecordTabs
       recordActive={recordActive}
-      // onClickRecordTab={onClickRecordTab}
+      onClickRecordTab={onClickRecordTab}
     />
   );
 };

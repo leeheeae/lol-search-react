@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { tiemstamp } from '../../lib/tiemstamp';
+import { tiemstamp, timeForToday } from '../../lib/tiemstamp';
 import { infoSearchBox } from '../../lib/infoSearch';
 import {
   targetSummoner,
   gameResultSearch,
   matchGameName,
+  killParticipantion,
+  gameModeConfig,
 } from '../../lib/conifg';
 import { Link } from 'react-router-dom';
 
@@ -49,14 +51,22 @@ const RecordItemBlock = styled.div`
 `;
 
 const GameInfo = styled.div`
-  width: 140px;
+  width: 160px;
 
   .type {
     font-size: 1rem;
     font-weight: 700;
   }
+
+  .quetype {
+    letter-spacing: -0.3px;
+    font-size: 0.84rem;
+    font-weight: 400;
+    margin-left: 3px;
+    color: #666;
+  }
   .time-stamp {
-    margin-top: 6px;
+    margin-top: 8px;
     font-size: 0.84rem;
     color: #666;
 
@@ -66,7 +76,7 @@ const GameInfo = styled.div`
       width: 20px;
       height: 2px;
       background-color: #aaa;
-      margin: 12px 0 20px;
+      margin: 10px 0 20px;
     }
   }
   .game-result {
@@ -215,9 +225,10 @@ const StateInfo = styled.div`
   font-size: 0.94rem;
 
   & > div {
-    margin: 6px 0;
+    margin: 8px 0;
   }
   .kill-participantion {
+    margin-top: 12px;
     font-weight: 500;
     color: #d31a45;
   }
@@ -256,6 +267,18 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
     }
   };
 
+  //킬관여
+  const killParticipantion = (info, target) => {
+    const totalKill = info.teams
+      .filter((team) => team.teamId === target.teamId)
+      .map((targeteam) => targeteam.objectives.champion.kills);
+
+    const result = Math.round(
+      ((target.kills + target.assists) / totalKill) * 100,
+    );
+    return `${result}%`;
+  };
+
   if (!target) return;
 
   return (
@@ -264,8 +287,13 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
         className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
       >
         <GameInfo>
-          <div className="type">{matchGameName(info.gameMode)}</div>
-          <div className="time-stamp">7시간 전</div>
+          <div className="type">
+            {gameModeConfig[info.gameMode]}
+            <span className="quetype">({matchGameName(info.queueId)})</span>
+          </div>
+          <div className="time-stamp">
+            {timeForToday(info.gameEndTimestamp)}
+          </div>
           <div className="game-result">
             {gameResultSearch(target) === true ? '승리' : '패배'}
           </div>
@@ -314,7 +342,7 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
               {Math.ceil(
                 ((target.kills + target.assists) / target.deaths) * 100,
               ) / 100}
-            </span>{' '}
+            </span>
             평점
           </div>
           <div className="kills">{killsCheck(target)}</div>
@@ -335,7 +363,10 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
         <StateInfo>
           <div className="level">레벨 {target.champLevel}</div>
           <div className="cs">121 (5.1)CS</div>
-          <div className="kill-participantion">킬관여 60%</div>
+          <div className="kill-participantion">
+            킬관여 {killParticipantion(info, target)}
+          </div>
+          {/* <div className="kill-participantion">킬관여 60%</div> */}
         </StateInfo>
 
         <Participants>

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { matchByMatchId, matchByClear } from '../../modules/match';
 import { champInfoSearch } from '../../modules/champ';
 import { spellSearch } from '../../modules/spell';
-import data from '../../lib/conifg/data.json';
 
 const RecordContainer = () => {
   const dispatch = useDispatch();
