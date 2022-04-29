@@ -8,34 +8,20 @@ const RecordContainer = () => {
 
   const [recordActive, setRecordActive] = useState(0);
 
-  const { summoner, loading, matchIdList, matchByMatchIdList } = useSelector(
-    ({ summoner, loading, match }) => ({
-      summoner: summoner.summoner,
-      loading: loading['match/MATCH_BY_PUUID'],
-      matchIdList: match.matchIdList,
-      matchByMatchIdList: match.matchByMatchIdList,
-    }),
-  );
+  const { summoner, loading } = useSelector(({ summoner, loading, match }) => ({
+    summoner: summoner.summoner,
+    loading: loading['match/MATCH_BY_PUUID'],
+    matchIdList: match.matchIdList,
+    matchByMatchIdList: match.matchByMatchIdList,
+  }));
   const onClickRecordTab = useCallback(
     (idx, queue, type) => {
       setRecordActive(idx);
       // dispatch(matchByClear());
-      const value = {
-        puuid: summoner.puuid,
-        queue: queue,
-        type: type,
-      };
-      console.log(dispatch(matchByPuuid(value)));
+      dispatch(matchByPuuid(summoner.puuid, queue, type));
     },
-    [recordActive, matchIdList, matchByMatchIdList],
+    [summoner.puuid],
   );
-
-  // const onClickRecordTab = (idx, queue, type) => {
-  //   setRecordActive(idx);
-  //   console.log(idx, queue, type);
-  //   dispatch(matchByClear());
-  //   dispatch(matchByPuuid(summoner.puuid, queue, type));
-  // };
 
   useEffect(() => {
     if (!summoner.puuid) return;
@@ -45,7 +31,7 @@ const RecordContainer = () => {
     return () => {
       dispatch(matchByClear());
     };
-  }, [dispatch, summoner.puuid, recordActive]);
+  }, []);
 
   if (!summoner) return null;
 

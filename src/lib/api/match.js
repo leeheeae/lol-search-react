@@ -10,20 +10,18 @@ const config = {
 };
 
 //소환사 게임 전적 검색
-export const matchByPuuid = (data) => {
-  return console.log(data);
-  // const params = {
-  //   queue: payload.queue,
-  //   type: payload.type,
-  //   startTime: 0,
-  //   start: 0,
-  //   count: 10,
-  //   api_key: process.env.REACT_APP_RIOT_KEY,
-  // };
-
-  // return client.get(`${config.url.riot}by-puuid/${payload.puuid}/ids`, {
-  //   params,
-  // });
+export const matchByPuuid = ([puuid, queue, type]) => {
+  const params = {
+    queue,
+    type,
+    startTime: 0,
+    start: 0,
+    count: 10,
+    api_key: process.env.REACT_APP_RIOT_KEY,
+  };
+  return client.get(`${config.url.riot}by-puuid/${puuid}/ids`, {
+    params,
+  });
 };
 
 //게임 전적 상세
