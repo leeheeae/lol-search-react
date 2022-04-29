@@ -11,19 +11,21 @@ const RecordItem = styled.li`
   padding: 20px 22px;
   background-color: #fff;
   border-radius: 3px;
+  display: flex;
+  align-items: center;
 
   & + li {
     margin-top: 14px;
   }
 
   &.victory {
-    background-color: #dbe4f7;
+    background-color: #d8dbef;
 
     & .game-result {
-      color: #0e50d3;
+      color: #223de4;
     }
     & .game-length {
-      color: #0e50d3;
+      color: #223de4;
     }
   }
   &.defeat {
@@ -38,15 +40,15 @@ const RecordItem = styled.li`
   }
 
   .game-info {
-    width: 100px;
+    width: 130px;
 
     .type {
       font-size: 1rem;
       font-weight: 700;
     }
     .time-stamp {
-      margin-top: 7px;
-      font-size: 0.85rem;
+      margin-top: 6px;
+      font-size: 0.84rem;
       color: #666;
 
       &::after {
@@ -55,16 +57,74 @@ const RecordItem = styled.li`
         width: 20px;
         height: 2px;
         background-color: #aaa;
-        margin: 12px 0 18px;
+        margin: 10px 0 18px;
       }
     }
     .game-result {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 8px;
     }
     .game-length {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
+    }
+  }
+
+  .champion-info {
+    display: flex;
+    .icon {
+      position: relative;
+      width: 106px;
+      height: 106px;
+      background-color: #fff;
+      border-radius: 3px;
+
+      .name {
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        padding: 5px 0;
+        font-size: 0.86rem;
+        font-weight: 500;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+      }
+    }
+    .spells {
+      margin-left: 10px;
+      & > div {
+        width: 49px;
+        height: 49px;
+        background-color: #fff;
+
+        & + div {
+          margin-top: 8px;
+        }
+      }
+    }
+    .runes {
+    }
+  }
+
+  .kda-info {
+    width: 160px;
+    text-align: center;
+
+    .kda {
+      letter-spacing: -0.5px;
+      font-size: 1.16rem;
+      font-weight: 800;
+    }
+
+    .ratio {
+      margin-top: 6px;
+      font-size: 0.84rem;
+      color: #555;
+
+      span {
+        font-weight: 500;
+      }
     }
   }
 `;
@@ -94,6 +154,26 @@ const Record = ({ matchByMatchIdList }) => {
             <div className="time-stamp">7시간 전</div>
             <div className="game-result">승리</div>
             <div className="game-length">21분 38초</div>
+          </div>
+
+          <div className="champion-info">
+            <div className="icon">
+              <div className="name">스웨인</div>
+            </div>
+            <div className="spells">
+              <div></div>
+              <div></div>
+            </div>
+            <div className="runes"></div>
+          </div>
+
+          <div class="kda-info">
+            <div class="kda">
+              <span>3</span> / <span class="d">14</span> / <span>29</span>
+            </div>
+            <div class="ratio">
+              <span>2.29:1</span> 평점
+            </div>
           </div>
         </RecordItem>
 
