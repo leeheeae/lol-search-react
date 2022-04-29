@@ -7,6 +7,7 @@ import {
   gameResultSearch,
   matchGameName,
 } from '../../lib/conifg';
+import { Link } from 'react-router-dom';
 
 const RecordItemBlock = styled.div`
   width: 100%;
@@ -45,154 +46,154 @@ const RecordItemBlock = styled.div`
       color: #d31a45;
     }
   }
+`;
 
-  .game-info {
-    width: 140px;
+const GameInfo = styled.div`
+  width: 140px;
 
-    .type {
-      font-size: 1rem;
-      font-weight: 700;
-    }
-    .time-stamp {
-      margin-top: 6px;
-      font-size: 0.84rem;
-      color: #666;
+  .type {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .time-stamp {
+    margin-top: 6px;
+    font-size: 0.84rem;
+    color: #666;
 
-      &::after {
-        content: '';
-        display: block;
-        width: 20px;
-        height: 2px;
-        background-color: #aaa;
-        margin: 12px 0 20px;
-      }
-    }
-    .game-result {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .game-length {
-      font-size: 0.86rem;
+    &::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: #aaa;
+      margin: 12px 0 20px;
     }
   }
+  .game-result {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .game-length {
+    font-size: 0.86rem;
+  }
+`;
 
-  .champion-info {
-    .icon {
-      position: relative;
-      width: 70px;
-      height: 70px;
-      background-color: #fff;
-      border-radius: 3px;
-      overflow: hidden;
+const KdaInfo = styled.div`
+  width: 190px;
+  text-align: center;
 
-      .name {
-        width: 100%;
-        position: absolute;
-        bottom: 0px;
-        padding: 5px 0;
-        font-size: 0.86rem;
-        font-weight: 500;
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: #fff;
-      }
+  .kda {
+    letter-spacing: -0.5px;
+    font-size: 1.16rem;
+    font-weight: 800;
+  }
+
+  .ratio {
+    margin-top: 6px;
+    font-size: 0.84rem;
+    color: #555;
+
+    span {
+      font-weight: 500;
     }
-    .spells {
-      margin-top: 6px;
-      display: flex;
+  }
+`;
 
-      & > div {
-        width: 32px;
-        height: 32px;
+const Participants = styled.div`
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+
+  ul {
+    width: 48%;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      & + li {
+        margin-top: 6px;
+      }
+
+      .icon {
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 20px;
+        max-width: 20px;
         background-color: #fff;
-
-        & + div {
-          margin-left: 6px;
-        }
-      }
-    }
-    .runes {
-    }
-  }
-
-  .kda-info {
-    width: 170px;
-    text-align: center;
-
-    .kda {
-      letter-spacing: -0.5px;
-      font-size: 1.16rem;
-      font-weight: 800;
-    }
-
-    .ratio {
-      margin-top: 6px;
-      font-size: 0.84rem;
-      color: #555;
-
-      span {
-        font-weight: 500;
-      }
-    }
-  }
-
-  .participants {
-    width: 220px;
-    display: flex;
-    justify-content: space-between;
-
-    ul {
-      width: 48%;
-
-      li {
-        display: flex;
-        align-items: center;
-
-        & + li {
-          margin-top: 6px;
-        }
-
-        .icon {
-          min-width: 20px;
-          min-height: 20px;
-          max-width: 20px;
-          max-width: 20px;
-          background-color: #fff;
-          border-radius: 50%;
-          margin-right: 4px;
-          overflow: hidden;
-        }
-
-        .name {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-size: 0.82rem;
-
-          &.target {
-            font-weight: 900;
-          }
-        }
-      }
-    }
-  }
-
-  .items {
-    margin-left: 30px;
-    ul {
-      width: 112px;
-      display: flex;
-      flex-wrap: wrap;
-
-      li {
-        width: 24px;
-        height: 24px;
-        background-color: #ccc;
-        margin: 2px;
-        border-radius: 3px;
+        border-radius: 50%;
+        margin-right: 4px;
         overflow: hidden;
       }
+
+      .name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.82rem;
+
+        &.target {
+          font-weight: 900;
+        }
+      }
+    }
+  }
+`;
+
+const ChampInfo = styled.div`
+  .icon {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+
+    .name {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      padding: 5px 0;
+      font-size: 0.86rem;
+      font-weight: 500;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+  }
+  .spells {
+    margin-top: 6px;
+    display: flex;
+
+    & > div {
+      width: 32px;
+      height: 32px;
+      background-color: #fff;
+
+      & + div {
+        margin-left: 6px;
+      }
+    }
+  }
+  .runes {
+  }
+`;
+
+const Items = styled.div`
+  margin-right: 50px;
+  ul {
+    width: 112px;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      width: 24px;
+      height: 24px;
+      background-color: #ccc;
+      margin: 2px;
+      border-radius: 3px;
+      overflow: hidden;
     }
   }
 `;
@@ -209,9 +210,18 @@ const Kills = styled.div`
   color: #d31a45;
 `;
 
-const link = {
-  item: 'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/',
-};
+const StateInfo = styled.div`
+  margin-right: 60px;
+  font-size: 0.94rem;
+
+  & > div {
+    margin: 6px 0;
+  }
+  .kill-participantion {
+    font-weight: 500;
+    color: #d31a45;
+  }
+`;
 
 const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
   const info = targetItem.data.info;
@@ -251,16 +261,16 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
       <RecordItemBlock
         className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
       >
-        <div className="game-info">
+        <GameInfo>
           <div className="type">{matchGameName(info.gameMode)}</div>
           <div className="time-stamp">7시간 전</div>
           <div className="game-result">
             {gameResultSearch(target) === true ? '승리' : '패배'}
           </div>
           <div className="game-length">{tiemstamp(info.gameDuration)}</div>
-        </div>
+        </GameInfo>
 
-        <div className="champion-info">
+        <ChampInfo>
           <div className="icon">
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
@@ -289,9 +299,9 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
             </div>
           </div>
           <div className="runes"></div>
-        </div>
+        </ChampInfo>
 
-        <div className="kda-info">
+        <KdaInfo>
           <div className="kda">
             <span>{target.kills}</span> /{' '}
             <span className="d">{target.deaths}</span> /{' '}
@@ -306,9 +316,27 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
             평점
           </div>
           <div className="kills">{killsCheck(target)}</div>
-        </div>
+        </KdaInfo>
 
-        <div className="participants">
+        <Items>
+          <ul>
+            <li>{itemImage(target.item0)}</li>
+            <li>{itemImage(target.item1)}</li>
+            <li>{itemImage(target.item2)}</li>
+            <li>{itemImage(target.item6)}</li>
+            <li>{itemImage(target.item3)}</li>
+            <li>{itemImage(target.item4)}</li>
+            <li>{itemImage(target.item5)}</li>
+          </ul>
+        </Items>
+
+        <StateInfo>
+          <div className="level">레벨 {target.champLevel}</div>
+          <div className="cs">121 (5.1)CS</div>
+          <div className="kill-participantion">킬관여 60%</div>
+        </StateInfo>
+
+        <Participants>
           <ul>
             {info.participants
               .filter((t) => t.teamId === 100)
@@ -322,7 +350,11 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
                       alt="champ-icon"
                     />
                   </div>
-                  <div className="name">{part.summonerName}</div>
+                  <div className="name">
+                    <Link to={`/search/${part.summonerName}`}>
+                      {part.summonerName}
+                    </Link>
+                  </div>
                 </li>
               ))}
           </ul>
@@ -339,24 +371,15 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
                       alt="champ-icon"
                     />
                   </div>
-                  <div className="name">{part.summonerName}</div>
+                  <div className="name">
+                    <Link to={`/search/${part.summonerName}`}>
+                      {part.summonerName}
+                    </Link>
+                  </div>
                 </li>
               ))}
           </ul>
-        </div>
-
-        <div className="items">
-          <ul>
-            <li>{itemImage(target.item0)}</li>
-            <li>{itemImage(target.item1)}</li>
-            <li>{itemImage(target.item2)}</li>
-            <li>{itemImage(target.item6)}</li>
-            <li>{itemImage(target.item3)}</li>
-            <li>{itemImage(target.item4)}</li>
-            <li>{itemImage(target.item5)}</li>
-          </ul>
-          <div>레벨 {target.champLevel}</div>
-        </div>
+        </Participants>
       </RecordItemBlock>
     </>
   );
