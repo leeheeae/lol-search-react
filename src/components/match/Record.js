@@ -4,6 +4,7 @@ import RecordItem from './RecordItem';
 
 const RecordBlock = styled.div`
   margin-top: 20px;
+  padding-bottom: 5rem;
 `;
 
 // "victory"

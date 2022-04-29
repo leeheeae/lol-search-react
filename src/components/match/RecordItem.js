@@ -197,6 +197,18 @@ const RecordItemBlock = styled.div`
   }
 `;
 
+const Kills = styled.div`
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.34rem 0.6rem;
+  border: 1px solid #d31a45;
+  border-radius: 1rem;
+  background-color: #fff;
+  color: #d31a45;
+`;
+
 const link = {
   item: 'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/',
 };
@@ -213,6 +225,25 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
         alt={item}
       />
     );
+  };
+
+  const killsCheck = (target) => {
+    if (target.pentaKills > 0) {
+      //펜타킬
+      return <Kills>펜타킬</Kills>;
+    }
+    if (target.quadraKills > 0) {
+      //쿼드라킬
+      return <Kills>쿼드라킬</Kills>;
+    }
+    if (target.tripleKills > 0) {
+      //tripleKills
+      return <Kills>트리플킬</Kills>;
+    }
+    if (target.doubleKills > 0) {
+      //더블킬
+      return <Kills>더블킬</Kills>;
+    }
   };
 
   return (
@@ -274,6 +305,7 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
             </span>{' '}
             평점
           </div>
+          <div className="kills">{killsCheck(target)}</div>
         </div>
 
         <div className="participants">
@@ -323,6 +355,7 @@ const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
             <li>{itemImage(target.item4)}</li>
             <li>{itemImage(target.item5)}</li>
           </ul>
+          <div>레벨 {target.champLevel}</div>
         </div>
       </RecordItemBlock>
     </>
