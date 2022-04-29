@@ -1,5 +1,7 @@
 # 라이엇 API를 이용한 LOL 소환사 전적 검색 사이트
 
+> > https://leeheeae.github.io/lol-search-react/ - view page
+
 ## 프로젝트
 
 > > Toy 프로젝트
@@ -11,6 +13,14 @@
 
 **사용 기술**
 `react`, `react-helmet-async`,`react-icons`, `react-redux`, `redux`, `react-router-dom`, `react-actions`, `redux-devtools-extension`, `redux-saga`, `styled-components`, `axios`, `qs`
+
+**사용한 API**
+
+> > https://developer.riotgames.com/
+
+**이미지 및 데이터 파일**
+
+> > https://developer.riotgames.com/docs/lol#data-dragon
 
 ---
 
