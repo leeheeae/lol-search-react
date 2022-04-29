@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { tiemstamp } from '../../lib/tiemstamp';
+import { infoSearchBox } from '../../lib/infoSearch';
 import {
   targetSummoner,
   gameResultSearch,
@@ -9,11 +10,16 @@ import {
 
 const RecordItemBlock = styled.div`
   width: 100%;
-  padding: 20px 22px;
+  padding: 20px 30px;
   background-color: #fff;
   border-radius: 3px;
   display: flex;
   align-items: center;
+
+  img {
+    display: block;
+    width: 100%;
+  }
 
   & + div {
     margin-top: 14px;
@@ -58,7 +64,7 @@ const RecordItemBlock = styled.div`
         width: 20px;
         height: 2px;
         background-color: #aaa;
-        margin: 10px 0 18px;
+        margin: 12px 0 20px;
       }
     }
     .game-result {
@@ -72,13 +78,13 @@ const RecordItemBlock = styled.div`
   }
 
   .champion-info {
-    display: flex;
     .icon {
       position: relative;
-      width: 106px;
-      height: 106px;
+      width: 70px;
+      height: 70px;
       background-color: #fff;
       border-radius: 3px;
+      overflow: hidden;
 
       .name {
         width: 100%;
@@ -93,14 +99,16 @@ const RecordItemBlock = styled.div`
       }
     }
     .spells {
-      margin-left: 10px;
+      margin-top: 6px;
+      display: flex;
+
       & > div {
-        width: 49px;
-        height: 49px;
+        width: 32px;
+        height: 32px;
         background-color: #fff;
 
         & + div {
-          margin-top: 8px;
+          margin-left: 6px;
         }
       }
     }
@@ -130,11 +138,12 @@ const RecordItemBlock = styled.div`
   }
 
   .participants {
-    width: 160px;
+    width: 220px;
     display: flex;
+    justify-content: space-between;
 
     ul {
-      width: 50%;
+      width: 48%;
 
       li {
         display: flex;
@@ -145,108 +154,162 @@ const RecordItemBlock = styled.div`
         }
 
         .icon {
-          width: 20px;
-          height: 20px;
-          background-color: #223de4;
+          min-width: 20px;
+          min-height: 20px;
+          max-width: 20px;
+          max-width: 20px;
+          background-color: #fff;
           border-radius: 50%;
-          margin-right: 3px;
+          margin-right: 4px;
+          overflow: hidden;
         }
 
         .name {
-          font-size: 0.86rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 0.82rem;
+
+          &.target {
+            font-weight: 900;
+          }
         }
+      }
+    }
+  }
+
+  .items {
+    margin-left: 30px;
+    ul {
+      width: 112px;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        width: 24px;
+        height: 24px;
+        background-color: #ccc;
+        margin: 2px;
+        border-radius: 3px;
+        overflow: hidden;
       }
     }
   }
 `;
 
-const RecordItem = ({ targetItem, summoner }) => {
+const RecordItem = ({ targetItem, summoner, champInfo, spellInfo }) => {
   const info = targetItem.data.info;
   const target = targetSummoner(info.participants, summoner);
 
-  return (
-    <>
-      <RecordItemBlock
-        className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
-      >
-        <div className="game-info">
-          <div className="type">{matchGameName(info.gameMode)}</div>
-          <div className="time-stamp">7시간 전</div>
-          <div className="game-result">
-            {gameResultSearch(target) === true ? '승리' : '패배'}
-          </div>
-          <div className="game-length">{tiemstamp(info.gameDuration)}</div>
+  <>
+    <RecordItemBlock
+      className={gameResultSearch(target) === true ? 'victory' : 'defeat'}
+    >
+      <div className="game-info">
+        <div className="type">{matchGameName(info.gameMode)}</div>
+        <div className="time-stamp">7시간 전</div>
+        <div className="game-result">
+          {gameResultSearch(target) === true ? '승리' : '패배'}
         </div>
+        <div className="game-length">{tiemstamp(info.gameDuration)}</div>
+      </div>
 
-        <div className="champion-info">
-          <div className="icon">
-            <div className="name">스웨인</div>
-          </div>
-          <div className="spells">
-            <div></div>
-            <div></div>
-          </div>
-          <div className="runes"></div>
+      <div className="champion-info">
+        <div className="icon">
+          <img
+            src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+              infoSearchBox(champInfo, target.championId).image.full
+            }`}
+            alt="champ-icon"
+          />
+          <div className="name">{target.championName}</div>
         </div>
+        <div className="spells">
+          <div>
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                infoSearchBox(spellInfo, target.summoner1Id).image.full
+              }`}
+              alt="spell"
+            />
+          </div>
+          <div>
+            <img
+              src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
+                infoSearchBox(spellInfo, target.summoner2Id).image.full
+              }`}
+              alt="spell"
+            />
+          </div>
+        </div>
+        <div className="runes"></div>
+      </div>
 
-        <div className="kda-info">
-          <div className="kda">
-            <span>3</span> / <span className="d">14</span> / <span>29</span>
-          </div>
-          <div className="ratio">
-            <span>2.29:1</span> 평점
-          </div>
+      <div className="kda-info">
+        <div className="kda">
+          <span>{target.kills}</span> /{' '}
+          <span className="d">{target.deaths}</span> /{' '}
+          <span>{target.assists}</span>
         </div>
+        <div className="ratio">
+          <span>
+            {Math.ceil(
+              ((target.kills + target.assists) / target.deaths) * 100,
+            ) / 100}
+          </span>{' '}
+          평점
+        </div>
+      </div>
 
-        <div className="participants">
-          <ul>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-            <li>
-              <div className="icon"></div>
-              <div className="name">ggg</div>
-            </li>
-          </ul>
-        </div>
-      </RecordItemBlock>
-    </>
-  );
+      <div className="participants">
+        <ul>
+          {info.participants
+            .filter((t) => t.teamId === 100)
+            .map((part) => (
+              <li key={part.summonerId}>
+                <div className="icon">
+                  <img
+                    src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+                      infoSearchBox(champInfo, part.championId).image.full
+                    }`}
+                    alt="champ-icon"
+                  />
+                </div>
+                <div className="name">{part.summonerName}</div>
+              </li>
+            ))}
+        </ul>
+        <ul>
+          {info.participants
+            .filter((t) => t.teamId === 200)
+            .map((part) => (
+              <li key={part.summonerId}>
+                <div className="icon">
+                  <img
+                    src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/champion/${
+                      infoSearchBox(champInfo, part.championId).image.full
+                    }`}
+                    alt="champ-icon"
+                  />
+                </div>
+                <div className="name">{part.summonerName}</div>
+              </li>
+            ))}
+        </ul>
+      </div>
+
+      <div className="items">
+        <ul>
+          <li>
+            <img
+              src={`https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/${target.item00}.png`}
+              alt={target.item00}
+            />
+          </li>
+        </ul>
+      </div>
+    </RecordItemBlock>
+  </>;
 };
 
 export default RecordItem;

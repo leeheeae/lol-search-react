@@ -59,14 +59,14 @@ const SpectatorItem = ({ summonerInfo, champInfo, spellInfo }) => {
           <div className="spell-box">
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                infoSearchBox(spellInfo, summonerInfo.spell1Id).id
-              }.png`}
+                infoSearchBox(spellInfo, summonerInfo.spell1Id).image.full
+              }`}
               alt="icon"
             />
             <img
               src={`http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/${
-                infoSearchBox(spellInfo, summonerInfo.spell2Id).id
-              }.png`}
+                infoSearchBox(spellInfo, summonerInfo.spell2Id).image.full
+              }`}
               alt="icon"
             />
           </div>

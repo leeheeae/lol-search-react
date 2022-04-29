@@ -7,12 +7,24 @@ const RecordBlock = styled.div`
 `;
 
 // "victory"
-const Record = ({ matchByMatchIdList, summoner }) => {
+const Record = ({
+  matchByMatchIdList,
+  summoner,
+  champInfo,
+  spellInfo,
+  itemList,
+}) => {
   return (
     <RecordBlock>
       <ul>
         {matchByMatchIdList.map((item, index) => (
-          <RecordItem targetItem={item} key={index} summoner={summoner} />
+          <RecordItem
+            targetItem={item}
+            key={index}
+            summoner={summoner}
+            champInfo={champInfo}
+            spellInfo={spellInfo}
+          />
         ))}
 
         {/* 

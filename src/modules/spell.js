@@ -18,8 +18,10 @@ export function* spellSaga() {
 
 const initialState = {
   spellInfo: '',
+  itemList: {},
   error: {
     spellDataEror: null,
+    itemDataError: null,
   },
 };
 
