@@ -17,10 +17,34 @@ const RecordContainer = () => {
   const onClickRecordTab = useCallback(
     (idx, queue, type) => {
       setRecordActive(idx);
-      // dispatch(matchByClear());
-      dispatch(matchByPuuid(summoner.puuid, queue, type));
+      dispatch(matchByClear());
+
+      if (idx === 0) {
+        //전체
+        dispatch(matchByPuuid(summoner.puuid, queue, type));
+      }
+
+      if (idx === 1) {
+        //솔로랭크
+        dispatch(matchByPuuid(summoner.puuid, 420, 'ranked'));
+      }
+
+      if (idx === 2) {
+        //자유랭크
+        dispatch(matchByPuuid(summoner.puuid, 440, 'ranked'));
+      }
+
+      if (idx === 3) {
+        //일반 - 소환사의협곡
+        dispatch(matchByPuuid(summoner.puuid, 420, 'normal'));
+      }
+
+      if (idx === 4) {
+        //무작위 총력전
+        dispatch(matchByPuuid(summoner.puuid, 450, 'normal'));
+      }
     },
-    [summoner.puuid],
+    [dispatch, summoner.puuid],
   );
 
   useEffect(() => {
@@ -31,7 +55,7 @@ const RecordContainer = () => {
     return () => {
       dispatch(matchByClear());
     };
-  }, []);
+  }, [dispatch, summoner.puuid]);
 
   if (!summoner) return null;
 
